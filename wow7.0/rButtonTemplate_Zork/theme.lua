@@ -93,7 +93,7 @@ actionButtonConfig.border = {
 --normalTexture
 actionButtonConfig.normalTexture = {
   file = mediapath.."normal",
-  color = {0.5,0.5,0.5,0.6},
+  color = {0.5,0.5,0.5,0.7},
   points = {
     {"TOPLEFT", 0, 0 },
     {"BOTTOMRIGHT", 0, 0 },
@@ -230,12 +230,9 @@ rButtonTemplate:StyleTempEnchants(auraButtonConfig)
 -----------------------------
 
 local debuffButtonConfig = copyTable(auraButtonConfig)
-
---use different duration points for debuff buttons
-debuffButtonConfig.duration.points = {
-  {"TOPRIGHT", 0, -3 },
-  {"TOPLEFT", 0, -3 },
-}
+--change the font sizes a bit
+debuffButtonConfig.count.font = { STANDARD_TEXT_FONT, 12.5, "OUTLINE"}
+debuffButtonConfig.duration.font = { STANDARD_TEXT_FONT, 12.5, "OUTLINE"}
 
 --rButtonTemplate:StyleDebuffButtons
 rButtonTemplate:StyleDebuffButtons(debuffButtonConfig)

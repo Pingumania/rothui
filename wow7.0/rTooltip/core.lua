@@ -21,7 +21,7 @@ local classColorHex, factionColorHex = {}, {}
 -----------------------------
 
 local cfg = {}
-cfg.textColor = {0.5,0.5,0.5}
+cfg.textColor = {0.4,0.4,0.4}
 cfg.bossColor = {1,0,0}
 cfg.eliteColor = {1,0,0.5}
 cfg.rareeliteColor = {1,0.5,0}
@@ -75,13 +75,10 @@ local function OnTooltipSetUnit(self)
   GameTooltipTextLeft7:SetTextColor(unpack(cfg.textColor))
   GameTooltipTextLeft8:SetTextColor(unpack(cfg.textColor))
   --position raidicon
-  local raidIconIndex = GetRaidTargetIndex(unit)
-  if raidIconIndex then
-    --GameTooltipTextLeft1:SetText(("%s %s"):format(ICON_LIST[raidIconIndex].."14|t", unitName))
-    --self:AppendText(" "..ICON_LIST[raidIconIndex].."14|t")
-    GameTooltipTexture1:SetTexture("Interface\\TargetingFrame\\UI-RaidTargetingIcon_"..raidIconIndex)
-    GameTooltipTexture1:Show()
-  end
+  --local raidIconIndex = GetRaidTargetIndex(unit)
+  --if raidIconIndex then
+  --  GameTooltipTextLeft1:SetText(("%s %s"):format(ICON_LIST[raidIconIndex].."14|t", unitName))
+  --end
   if not UnitIsPlayer(unit) then
     --unit is not a player
     --color textleft1 and statusbar by faction color
@@ -96,36 +93,29 @@ local function OnTooltipSetUnit(self)
     end
     --color textleft2 by classificationcolor
     local unitClassification = UnitClassification(unit)
+
+    local levelLine
+    if string.find(GameTooltipTextLeft2:GetText() or "empty", "%a%s%d") then
+      levelLine = GameTooltipTextLeft2
+    elseif string.find(GameTooltipTextLeft3:GetText() or "empty", "%a%s%d") then
+      GameTooltipTextLeft2:SetTextColor(unpack(cfg.guildColor)) --seems like the npc has a description, use the guild color for this
+      levelLine = GameTooltipTextLeft3
+    end
+    if levelLine then
+      local l = UnitLevel(unit)
+      local color = GetQuestDifficultyColor((l > 0) and l or 99)
+      levelLine:SetTextColor(color.r,color.g,color.b)
+    end
     if unitClassification == "worldboss" or UnitLevel(unit) == -1 then
+      self:AppendText(" |TInterface\\TargetingFrame\\UI-TargetingFrame-Skull:14:14|t")
+      --GameTooltipTextLeft1:SetText(("%s%s"):format("|TInterface\\TargetingFrame\\UI-TargetingFrame-Skull:14:14|t", unitName))
       GameTooltipTextLeft2:SetTextColor(unpack(cfg.bossColor))
     elseif unitClassification == "rare" then
-      local line = GameTooltipTextLeft2
-      if string.find(GameTooltipTextLeft3:GetText(), "%a%s%d") then
-        line:SetTextColor(unpack(cfg.guildColor))
-        line = GameTooltipTextLeft3
-      end
-      line:SetTextColor(unpack(cfg.rareColor))
+      self:AppendText(" |TInterface\\AddOns\\rTooltip\\media\\diablo:14:14:0:0:16:16:0:14:0:14|t")
     elseif unitClassification == "rareelite" then
-      local line = GameTooltipTextLeft2
-      if string.find(GameTooltipTextLeft3:GetText(), "%a%s%d") then
-        line:SetTextColor(unpack(cfg.guildColor))
-        line = GameTooltipTextLeft3
-      end
-      line:SetTextColor(unpack(cfg.rareeliteColor))
+      self:AppendText(" |TInterface\\AddOns\\rTooltip\\media\\diablo:14:14:0:0:16:16:0:14:0:14|t")
     elseif unitClassification == "elite" then
-      local line = GameTooltipTextLeft2
-      if string.find(GameTooltipTextLeft3:GetText(), "%a%s%d") then
-        line:SetTextColor(unpack(cfg.guildColor))
-        line = GameTooltipTextLeft3
-      end
-      line:SetTextColor(unpack(cfg.eliteColor))
-    else
-      local line = GameTooltipTextLeft2
-      if string.find(GameTooltipTextLeft3:GetText(), "%a%s%d") then
-        line:SetTextColor(unpack(cfg.guildColor))
-        line = GameTooltipTextLeft3
-      end
-      line:SetTextColor(unpack(cfg.levelColor))
+      self:AppendText(" |TInterface\\HelpFrame\\HotIssueIcon:14:14|t")
     end
   else
     --unit is any player
@@ -140,10 +130,11 @@ local function OnTooltipSetUnit(self)
     if unitGuild then
       GameTooltipTextLeft2:SetText("<"..unitGuild..">")
       GameTooltipTextLeft2:SetTextColor(unpack(cfg.guildColor))
-      GameTooltipTextLeft3:SetTextColor(unpack(cfg.levelColor))
-    else
-      GameTooltipTextLeft2:SetTextColor(unpack(cfg.levelColor))
     end
+    local levelLine = unitGuild and GameTooltipTextLeft3 or GameTooltipTextLeft2
+    local l = UnitLevel(unit)
+    local color = GetQuestDifficultyColor((l > 0) and l or 99)
+    levelLine:SetTextColor(color.r,color.g,color.b)
     --afk?
     if UnitIsAFK(unit) then
       self:AppendText((" |cff%s<AFK>|r"):format(cfg.afkColorHex))
@@ -167,24 +158,22 @@ local function TooltipOnShow(self)
   local itemName, itemLink = self:GetItem()
   if itemLink then
     local _, _, itemRarity = GetItemInfo(itemLink)
-    self:SetBackdropBorderColor(GetItemQualityColor(itemRarity))
+    if itemRarity then
+      self:SetBackdropBorderColor(GetItemQualityColor(itemRarity))
+    end
   end
 end
 
 --TooltipOnHide
 local function TooltipOnHide(self)
-  --print(self:GetName(),"TooltipOnHide")
   self:SetBackdropColor(unpack(cfg.backdrop.bgColor))
   self:SetBackdropBorderColor(unpack(cfg.backdrop.borderColor))
-  GameTooltipTexture1:Hide()
 end
 
 --OnTooltipCleared
 local function OnTooltipCleared(self)
-  --print(self:GetName(),"OnTooltipCleared")
   --fix the blue tooltip background...whatever that is
   self:SetBackdropColor(unpack(cfg.backdrop.bgColor))
-  GameTooltipTexture1:Hide()
 end
 
 local function FixBarColor(self,r,g,b)
@@ -198,12 +187,6 @@ end
 -----------------------------
 
 hooksecurefunc(GameTooltipStatusBar,"SetStatusBarColor", FixBarColor)
-
-GameTooltipTexture1:SetTexture("Interface\\Buttons\\WHITE8x8")
---GameTooltipTexture1:SetVertexColor(0,1,1,0.8)
-GameTooltipTexture1:SetSize(20,20)
-GameTooltipTexture1:ClearAllPoints()
-GameTooltipTexture1:SetPoint("BOTTOM",GameTooltip,"TOP",0,2)
 
 --hex class colors
 for class, color in next, RAID_CLASS_COLORS do
@@ -219,8 +202,14 @@ cfg.targetColorHex = GetHexColor(cfg.targetColor)
 cfg.afkColorHex = GetHexColor(cfg.afkColor)
 
 GameTooltipHeaderText:SetFont(cfg.fontFamily, 14, "NONE")
+GameTooltipHeaderText:SetShadowOffset(1,-1)
+GameTooltipHeaderText:SetShadowColor(0,0,0,0.9)
 GameTooltipText:SetFont(cfg.fontFamily, 12, "NONE")
+GameTooltipText:SetShadowOffset(1,-1)
+GameTooltipText:SetShadowColor(0,0,0,0.9)
 Tooltip_Small:SetFont(cfg.fontFamily, 11, "NONE")
+Tooltip_Small:SetShadowOffset(1,-1)
+Tooltip_Small:SetShadowColor(0,0,0,0.9)
 
 --gametooltip statusbar
 GameTooltipStatusBar:ClearAllPoints()
