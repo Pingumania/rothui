@@ -24,7 +24,7 @@ L.C.hideInPVP     = true    -- hide while being in arena / battleground
 
 -- frame position (you can move the frame ingame via "/rthreat")
 L.C.frame = {
-  pos = { a1 = "LEFT", af = UIParent, a2 = "LEFT", x = 50, y = 0 },
+  pos = { a1 = "BOTTOM", af = UIParent, a2 = "BOTTOM", x = 350, y = 20 },
   bg = {
     color = { r = 0, g = 0, b = 0, a = 0.7 },
   },
@@ -34,7 +34,7 @@ L.C.frame = {
 L.C.shadow = {
   show            = true,
   bgFile          = nil,    -- "Interface\\AddOns\\rThreat\\background",
-  bgColor         = { r = 0.15, g = 0.8, b = 1, a = 0.2 },
+  bgColor         = { r = 0.15, g = 0.8, b = 1, a = 0.5 },
   edgeFile        = "Interface\\AddOns\\rThreat\\media\\shadow",
   edgeColor       = { r = 0, g = 0, b = 0, a = 1 },
   tile            = false,

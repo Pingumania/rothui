@@ -18,7 +18,7 @@ local fader = {
   fadeInAlpha = 1,
   fadeInDuration = 0.3,
   fadeInSmooth = "OUT",
-  fadeOutAlpha = 0.3,
+  fadeOutAlpha = 0.1,
   fadeOutDuration = 0.9,
   fadeOutSmooth = "OUT",
 }

@@ -89,7 +89,7 @@ L.C.target = {
     initialAnchor = "BOTTOMLEFT",
     growthX = "RIGHT",
     growthY = "UP",
-    disableCooldown = true,
+    disableCooldown = false,
   },
   debuffs = {
     enabled = true,
@@ -101,6 +101,6 @@ L.C.target = {
     initialAnchor = "TOPLEFT",
     growthX = "RIGHT",
     growthY = "DOWN",
-    disableCooldown = true,
+    disableCooldown = false,
   },
 }
