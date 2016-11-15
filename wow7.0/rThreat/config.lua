@@ -24,7 +24,7 @@ L.C.hideInPVP     = true    -- hide while being in arena / battleground
 
 -- frame position (you can move the frame ingame via "/rthreat")
 L.C.frame = {
-  pos = { a1 = "BOTTOM", af = UIParent, a2 = "BOTTOM", x = 350, y = 20 },
+  pos = { a1 = "BOTTOM", af = UIParent, a2 = "BOTTOM", x = -450, y = 18 },
   bg = {
     color = { r = 0, g = 0, b = 0, a = 0.7 },
   },

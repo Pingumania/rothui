@@ -1,4 +1,4 @@
-## Interface: 70000
+## Interface: 70100
 ## Author: zork
 ## Title: rActionBar_Default
 ## Notes: Default bar layout for rActionBar
