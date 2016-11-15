@@ -1,0 +1,12 @@
+## Interface: 70100
+## Author: zork
+## Title: rFilterConfig
+## Notes: Config for rFilter
+## RequiredDeps: rLib
+
+init.lua
+functions.lua
+actionbutton.lua
+buff.lua
+debuff.lua
+cooldown.lua
