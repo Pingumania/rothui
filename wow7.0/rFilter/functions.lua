@@ -83,9 +83,21 @@ end
 local function OnSizeChanged(button, width, height)
   local size = math.max(width,button.settings.size)
   button:SetSize(size,size)
-  UpdateFont(button,button.duration,L.C.actionButtonConfig.name.font,size)
-  UpdateFont(button,button.count,L.C.actionButtonConfig.count.font,size)
-  UpdateFont(button,button.extravalue,L.C.actionButtonConfig.hotkey.font,size)
+  --button.settings.durationFont
+  if not button.settings.durationFont then
+    button.settings.durationFont = {button.duration:GetFont()}
+  end
+  UpdateFont(button,button.duration,button.settings.durationFont,size)
+  --button.settings.countFont
+  if not button.settings.countFont then
+    button.settings.countFont = {button.count:GetFont()}
+  end
+  UpdateFont(button,button.count,button.settings.countFont,size)
+  --button.settings.extravalueFont
+  if not button.settings.extravalueFont then
+    button.settings.extravalueFont = {button.extravalue:GetFont()}
+  end
+  UpdateFont(button,button.extravalue,button.settings.extravalueFont,size)
 end
 
 --CreateButton
@@ -120,8 +132,6 @@ local function CreateButton(type,buttonName,spellid,unit,size,point,visibility,a
     button.frameVisibility = visibility
     RegisterStateDriver(button, "visibility", visibility)
   end
-  --style button
-  rButtonTemplate:StyleActionButton(button,L.C.actionButtonConfig)
   --drag/resize frame
   rLib:CreateDragResizeFrame(button, L.dragFrames, -2, true)
   --onsizechanged
@@ -229,6 +239,7 @@ local function UpdateCooldown(button)
     end
     button.duration:SetText("RDY")
     button.duration:SetTextColor(0, 0.8, 0)
+    button.border:SetVertexColor(0.2,0.6,0.8,0)
     EnableButton(button)
   end
 end
