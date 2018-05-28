@@ -42,6 +42,7 @@ L.C.target = {
       size = 16,
       tag = "[oUF_Simple:health]",
     },
+    debuffHighlight = true,
   },
   --powerbar
   powerbar = {
@@ -54,7 +55,7 @@ L.C.target = {
   raidmark = {
     enabled = true,
     size = {18,18},
-    point = {"CENTER","LEFT",0,0},
+    point = {"CENTER","TOP",0,0},
   },
   --castbar
   castbar = {

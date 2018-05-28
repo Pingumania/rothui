@@ -1,4 +1,4 @@
-## Interface: 70100
+## Interface: 70300
 ## Author: zork
 ## Title: oUF_SimpleConfig
 ## Notes: oUF_Simple config
@@ -12,6 +12,7 @@ target.lua
 targettarget.lua
 pet.lua
 focus.lua
+mouseover.lua
 party.lua
 boss.lua
 nameplate.lua
