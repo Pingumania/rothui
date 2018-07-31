@@ -1,5 +1,5 @@
 
--- oUF_Simple: core/init
+-- rFilter: core/init
 -- zork, 2016
 
 -----------------------------
@@ -10,11 +10,23 @@ local A, L = ...
 
 L.addonName       = A
 L.dragFrames      = {}
-L.addonColor      = "00FF3300"
-L.addonShortcut   = "ouf_simple"
+L.addonColor      = "0099FF00"
+L.addonShortcut   = "rfilter"
 
---get the config
-L.C = oUF_SimpleConfig
+--tick
+L.tick = 0.1
+
+--container for buff, debuffs, cooldown
+L.buffs = {}
+L.debuffs = {}
+L.cooldowns = {}
+
+-----------------------------
+-- rFilter Global
+-----------------------------
+
+rFilter = {}
+rFilter.addonName = A
 
 -----------------------------
 -- rLib slash command
