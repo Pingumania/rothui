@@ -116,7 +116,7 @@ L.C.nameplate = {
     initialAnchor = "TOPLEFT",
     growthX = "RIGHT",
     growthY = "UP",
-    disableCooldown = true,
+    disableCooldown = false,
     filter = "HARMFUL|INCLUDE_NAME_PLATE_ONLY",
     CustomFilter = CustomFilter
   },

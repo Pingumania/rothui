@@ -45,18 +45,24 @@ MinimapZoomIn:Hide()
 MinimapZoomOut:Hide()
 MinimapBorderTop:Hide()
 MiniMapWorldMapButton:Hide()
-MinimapZoneText:Hide()
+
+--zone text
+MinimapZoneText:SetPoint("TOP",0,-5)
+MinimapZoneText:SetFont(STANDARD_TEXT_FONT,12,"OUTLINE")
 
 --dungeon info
 MiniMapInstanceDifficulty:ClearAllPoints()
-MiniMapInstanceDifficulty:SetPoint("TOP",Minimap,"TOP",0,-5)
+MiniMapInstanceDifficulty:SetPoint("BOTTOMRIGHT",Minimap,"BOTTOMRIGHT",0,-37)
 MiniMapInstanceDifficulty:SetScale(0.8)
 GuildInstanceDifficulty:ClearAllPoints()
-GuildInstanceDifficulty:SetPoint("TOP",Minimap,"TOP",0,-5)
+GuildInstanceDifficulty:SetPoint("BOTTOMRIGHT",Minimap,"BOTTOMRIGHT",0,-37)
 GuildInstanceDifficulty:SetScale(0.7)
 MiniMapChallengeMode:ClearAllPoints()
-MiniMapChallengeMode:SetPoint("TOP",Minimap,"TOP",0,-10)
+MiniMapChallengeMode:SetPoint("BOTTOMRIGHT",Minimap,"BOTTOMRIGHT",0,-42)
 MiniMapChallengeMode:SetScale(0.6)
+MiniMapChallengeMode:SetAlpha(0.8)
+MiniMapInstanceDifficulty:SetAlpha(0.8)
+GuildInstanceDifficulty:SetAlpha(0.8)
 
 --QueueStatusMinimapButton (lfi)
 QueueStatusMinimapButton:SetParent(Minimap)
@@ -66,9 +72,6 @@ QueueStatusMinimapButton:SetPoint("BOTTOMLEFT",Minimap,0,0)
 QueueStatusMinimapButtonBorder:Hide()
 QueueStatusMinimapButton:SetHighlightTexture (nil)
 QueueStatusMinimapButton:SetPushedTexture(nil)
-
---garrison (DIEEEEEE!!!)
---GarrisonLandingPageMinimapButton
 
 --mail
 MiniMapMailFrame:ClearAllPoints()
@@ -93,8 +96,7 @@ MiniMapTrackingButtonBorder:Hide()
 
 --MiniMapNorthTag
 MinimapNorthTag:ClearAllPoints()
-MinimapNorthTag:SetPoint("TOP",Minimap,0,-3)
-MinimapNorthTag:SetAlpha(0)
+MinimapNorthTag:SetPoint("TOP",Minimap,0,-20)
 
 --Blizzard_TimeManager
 LoadAddOn("Blizzard_TimeManager")
@@ -131,11 +133,7 @@ Minimap:SetScript("OnMouseWheel", Zoom)
 --onenter/show
 local function Show()
   GameTimeFrame:SetAlpha(0.9)
-  TimeManagerClockButton:SetAlpha(0.9)
   MiniMapTracking:SetAlpha(0.9)
-  MiniMapChallengeMode:SetAlpha(0.9)
-  MiniMapInstanceDifficulty:SetAlpha(0.9)
-  GuildInstanceDifficulty:SetAlpha(0.9)
 end
 Minimap:SetScript("OnEnter", Show)
 
@@ -145,11 +143,7 @@ local function Hide()
   if Minimap:IsMouseOver() then return end
   if time() == lasttime then return end
   GameTimeFrame:SetAlpha(0)
-  TimeManagerClockButton:SetAlpha(0)
   MiniMapTracking:SetAlpha(0)
-  MiniMapChallengeMode:SetAlpha(0)
-  MiniMapInstanceDifficulty:SetAlpha(0)
-  GuildInstanceDifficulty:SetAlpha(0)
 end
 local function SetTimer()
   lasttime = time()
@@ -159,6 +153,115 @@ Minimap:SetScript("OnLeave", SetTimer)
 rLib:RegisterCallback("PLAYER_ENTERING_WORLD", Hide)
 Hide(Minimap)
 
+local function numformat(v)
+  if v > 1E10 then
+    return (floor(v/1E9)).."b"
+  elseif v > 1E9 then
+    return (floor((v/1E9)*10)/10).."b"
+  elseif v > 1E7 then
+    return (floor(v/1E6)).."m"
+  elseif v > 1E6 then
+    return (floor((v/1E6)*10)/10).."m"
+  elseif v > 1E4 then
+    return (floor(v/1E3)).."k"
+  elseif v > 1E3 then
+    return (floor((v/1E3)*10)/10).."k"
+  else
+    return v
+  end
+end
+
+--fps, latency and coords string
+local f1 = CreateFrame("Frame", "rInfoStringsContainer", Minimap)
+f1:SetPoint("BOTTOM",Minimap,0,-5)
+
+local t = f1:CreateFontString(nil, "BACKGROUND")
+t:SetFont(STANDARD_TEXT_FONT,12,"OUTLINE")
+t:SetPoint("CENTER", f1)
+
+f1.text = t;
+
+--experience
+local f2 = CreateFrame("Frame", "rExperienceContainer", Minimap)
+f2:SetPoint("BOTTOM",Minimap,0,-22)
+
+local t2 = f2:CreateFontString(nil, "BACKGROUND")
+t2:SetFont(STANDARD_TEXT_FONT,12,"OUTLINE")
+t2:SetPoint("CENTER", f2)
+
+f2.text = t2;
+
+
+
+local function rFPS()
+  return floor(GetFramerate()).."fps"
+end
+
+local function rLatency()
+  return select(3, GetNetStats()).."ms"
+end
+
+local function rZoneCoords()
+  local x, y = C_Map.GetPlayerMapPosition(C_Map.GetBestMapForUnit("player"), "player"):GetXY()
+  local coords
+  if x and y and x ~= 0 and y ~= 0 then
+    coords = format("%.1f, %.1f",x*100,y*100)
+  else 
+    coords = "--.-, --.-"
+  end
+  return coords
+end
+
+local function rsiExpRep()
+  local xp = ""
+
+  if not IsXPUserDisabled() and (UnitLevel("player")<MAX_PLAYER_LEVEL) then
+    if GetXPExhaustion() then
+      xp = "|c009C907D("..numformat(GetXPExhaustion() or 0)..")|r "
+    else 
+      xp = ""
+    end
+    xp = "|c009C907D"..numformat(UnitXP("player")).."/"..numformat(UnitXPMax("player")).." |r"..xp.."| "..string.format("%.0f", (UnitXP("player")/UnitXPMax("player")*100)).."%|r"
+  else
+    local _, _, minimum, maximum, value = GetWatchedFactionInfo()
+    if ((value-minimum)==999) and ((maximum-minimum)==1000) then
+      xp = "|c0000FF00MAXED OUT|r"
+    else
+      xp = "|c0000FF00"..numformat(value-minimum).."/"..numformat(maximum-minimum).." | "..string.format("%.0f", (value-minimum)/(maximum-minimum)*100).."%|r"
+    end
+  end
+  return xp
+end
+
+local function rUpdateStrings()
+  f1.text:SetText(rZoneCoords().." / ".."|c009C907D"..rLatency().." "..rFPS().."|r")
+  f1:SetHeight(f1.text:GetStringHeight())
+  f1:SetWidth(f1.text:GetStringWidth())
+
+  f2.text:SetText(rsiExpRep())
+  f2:SetHeight(f2.text:GetStringHeight())
+  f2:SetWidth(f2.text:GetStringWidth())
+end
+
+local startSearch = function(self)
+  --timer
+  local ag = self:CreateAnimationGroup()
+  ag.anim = ag:CreateAnimation()
+  ag.anim:SetDuration(1)
+  ag:SetLooping("REPEAT")
+  ag:SetScript("OnLoop", function(self, event, ...)
+    rUpdateStrings()
+  end)
+  ag:Play()
+end
+
+local a = CreateFrame("Frame")
+a:RegisterEvent("PLAYER_LOGIN")
+a:SetScript("OnEvent", function(self, event, ...)
+  if event == "PLAYER_LOGIN" then
+    startSearch(self)
+  end
+end)
 
 --drag frame
 rLib:CreateDragFrame(MinimapCluster, L.dragFrames, -2, true)

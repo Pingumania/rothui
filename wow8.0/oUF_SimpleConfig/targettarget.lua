@@ -13,7 +13,7 @@ local A, L = ...
 -----------------------------
 
 L.C.targettarget = {
-  enabled = true,
+  enabled = false,
   size = {130,26},
   point = {"TOPLEFT","oUF_SimpleTarget","BOTTOMLEFT",0,-14},
   scale = 1*L.C.globalscale,
