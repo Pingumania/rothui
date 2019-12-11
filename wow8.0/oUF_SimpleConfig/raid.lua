@@ -20,7 +20,7 @@ L.C.raid = {
     {"TOP", "oUF_SimpleRaidHeader1", "BOTTOM", 0, -10},
     {"TOP", "oUF_SimpleRaidHeader2", "BOTTOM", 0, -10},
     {"TOP", "oUF_SimpleRaidHeader3", "BOTTOM", 0, -10},
-    {"LEFT", "oUF_SimpleRaidHeader1", "RIGHT", 10, 0},
+    {"TOPLEFT", "oUF_SimpleRaidHeader1", "TOPRIGHT", 10, 0},
     {"TOP", "oUF_SimpleRaidHeader5", "BOTTOM", 0, -10},
     {"TOP", "oUF_SimpleRaidHeader6", "BOTTOM", 0, -10},
     {"TOP", "oUF_SimpleRaidHeader7", "BOTTOM", 0, -10},
@@ -40,7 +40,7 @@ L.C.raid = {
         {"LEFT",2,0},
         {"RIGHT",-2,0},
       },
-      size = 16,
+      size = 15,
       align = "CENTER",
       tag = "[name][oUF_Simple:role]",
     },
@@ -50,7 +50,19 @@ L.C.raid = {
   raidmark = {
     enabled = true,
     size = {18,18},
-    point = {"CENTER","TOP",0,0},
+    point = {"CENTER","TOP",0,4},
+  },
+  --readycheck
+  readycheck = {
+    enabled = true,
+    size = {26,26},
+    point = {"CENTER","CENTER",0,0},
+  },
+  --resurrect
+  resurrect = {
+    enabled = true,
+    size = {26,26},
+    point = {"CENTER","CENTER",0,0},
   },
   setup = {
     template = nil,
@@ -62,5 +74,9 @@ L.C.raid = {
     point = "TOP",
     xOffset = 0,
     yOffset = -5,
+  },
+  range = {
+    insideAlpha = 1,
+    outsideAlpha = .5,
   },
 }

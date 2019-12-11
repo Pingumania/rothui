@@ -8,6 +8,8 @@
 
 local A, L = ...
 
+local character = UnitName("player")
+
 -----------------------------
 -- Party Config
 -----------------------------
@@ -15,7 +17,7 @@ local A, L = ...
 L.C.party = {
   enabled = true,
   size = {180,26},
-  point = {"TOPLEFT",20,-20},
+  point = { "TOPLEFT", "oUF_SimplePlayer", "BOTTOMLEFT", 0, -92 }, --{"TOPLEFT",20,-20},
   scale = 1*L.C.globalscale,
   --healthbar
   healthbar = {
@@ -31,13 +33,13 @@ L.C.party = {
         {"TOPLEFT",2,10},
         {"TOPRIGHT",-2,10},
       },
-      size = 17,
+      size = 15,
       tag = "[name][oUF_Simple:leader][oUF_Simple:role]",
     },
     health = {
       enabled = true,
       point = {"RIGHT",-2,0},
-      size = 16,
+      size = 15,
       tag = "[oUF_Simple:health]",
     },
     debuffHighlight = true,
@@ -53,14 +55,26 @@ L.C.party = {
   raidmark = {
     enabled = true,
     size = {18,18},
-    point = {"CENTER","TOP",0,0},
+    point = {"CENTER","TOP",0,4},
+  },
+  --readycheck
+  readycheck = {
+    enabled = true,
+    size = {26,26},
+    point = {"CENTER","CENTER",0,0},
+  },
+  --resurrect
+  resurrect = {
+    enabled = true,
+    size = {26,26},
+    point = {"CENTER","CENTER",0,0},
   },
   --debuffs
   debuffs = {
     enabled = true,
     point = {"LEFT","RIGHT",5,0},
-    num = 5,
-    cols = 5,
+    num = 3,
+    cols = 3,
     size = 26,
     spacing = 5,
     initialAnchor = "TOPLEFT",
@@ -79,4 +93,13 @@ L.C.party = {
     xOffset = 0,
     yOffset = -14,
   },
+  range = {
+    insideAlpha = 1,
+    outsideAlpha = .5,
+  },
 }
+
+--change party point for tank paladin
+--if character == "Luavi" then
+--  L.C.party.point = { "TOPLEFT", "oUF_SimplePlayer", "BOTTOMLEFT", 0, -92 }
+--end

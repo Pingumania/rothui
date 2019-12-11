@@ -1,0 +1,9 @@
+## Interface: 11302
+## Author: zork
+## Title: rStatusButton |cffff6600Classic|r
+## Notes: A little gem with a tip
+## RequiredDeps: rLib
+
+variables.lua
+config.lua
+core.lua

@@ -46,11 +46,20 @@ L.C.NamePlateCVars = cvars
 -- NamePlateConfig
 -----------------------------
 
+local buff_whitelist = {}
+buff_whitelist[277242] = true --infest
+buff_whitelist[209859] = true --bolster
+
+--custom filter for nameplate Buffs
+local function CustomFilterBuffs(...)
+  local element, unit, button, name, texture, count, debuffType, duration, expiration, caster, isStealable, nameplateShowSelf, spellID, canApply, isBossDebuff, casterIsPlayer, nameplateShowAll, timeMod, effect1, effect2, effect3 = ...
+  return buff_whitelist[spellID] or nameplateShowSelf or nameplateShowAll or (caster == "player" or caster == "pet" or caster == "vehicle")
+end
+
 --custom filter for nameplate debuffs
-local function CustomFilter(...)
-  --icons, unit, icon, name, texture, count, dispelType, duration, expiration, caster, isStealable, nameplateShowSelf, spellID, canApply, isBossDebuff, casterIsPlayer, nameplateShowAll
-  local _, _, _, _, _, _, _, _, _, caster, _, _, _, _, _, _, nameplateShowAll = ...
-  return nameplateShowAll or (caster == "player" or caster == "pet" or caster == "vehicle")
+local function CustomFilterDebuffs(...)
+  local element, unit, button, name, texture, count, debuffType, duration, expiration, caster, isStealable, nameplateShowSelf, spellID, canApply, isBossDebuff, casterIsPlayer, nameplateShowAll, timeMod, effect1, effect2, effect3 = ...
+  return nameplateShowSelf or nameplateShowAll or (caster == "player" or caster == "pet" or caster == "vehicle")
 end
 
 L.C.nameplate = {
@@ -74,9 +83,9 @@ L.C.nameplate = {
         {"LEFT",2,0},
         {"RIGHT",-2,0},
       },
-      size = 16,
+      size = 15,
       align = "CENTER",
-      tag = "[difficulty][name]|r",
+      tag = "[oUF_SimpleConfig:classification][difficulty][name]|r",
     },
     debuffHighlight = true,
   },
@@ -84,7 +93,7 @@ L.C.nameplate = {
   raidmark = {
     enabled = true,
     size = {18,18},
-    point = {"CENTER","TOP",0,0},
+    point = {"CENTER","TOP",0,4},
   },
   --castbar
   castbar = {
@@ -97,13 +106,28 @@ L.C.nameplate = {
         {"LEFT",2,0},
         {"RIGHT",-2,0},
       },
-      size = 16,
+      size = 15,
     },
     icon = {
       enabled = true,
       size = {26,26},
       point = {"RIGHT","LEFT",-6,0},
     },
+  },
+  --buffs
+  buffs = {
+    enabled = true,
+    point = {"BOTTOM","TOP",0,32},
+    num = 10,
+    cols = 4,
+    size = 32,
+    spacing = 5,
+    initialAnchor = "BOTTOMLEFT",
+    growthX = "RIGHT",
+    growthY = "UP",
+    disableCooldown = true,
+    filter = "HELPFUL|INCLUDE_NAME_PLATE_ONLY",
+    CustomFilter = CustomFilterBuffs
   },
   --debuffs
   debuffs = {
@@ -113,11 +137,11 @@ L.C.nameplate = {
     cols = 5,
     size = 22,
     spacing = 5,
-    initialAnchor = "TOPLEFT",
+    initialAnchor = "BOTTOMLEFT",
     growthX = "RIGHT",
     growthY = "UP",
     disableCooldown = false,
     filter = "HARMFUL|INCLUDE_NAME_PLATE_ONLY",
-    CustomFilter = CustomFilter
+    CustomFilter = CustomFilterDebuffs
   },
 }

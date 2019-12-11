@@ -30,7 +30,7 @@ L.C.boss = {
         {"LEFT",2,0},
         {"RIGHT",-2,0},
       },
-      size = 16,
+      size = 15,
       align = "CENTER",
       tag = "[name]",
     },
@@ -53,7 +53,7 @@ L.C.boss = {
   raidmark = {
     enabled = true,
     size = {18,18},
-    point = {"CENTER","TOP",0,0},
+    point = {"CENTER","TOP",0,4},
   },
   --castbar
   castbar = {
@@ -66,13 +66,26 @@ L.C.boss = {
         {"LEFT",2,0},
         {"RIGHT",-2,0},
       },
-      size = 16,
+      size = 15,
     },
     icon = {
       enabled = true,
       size = {26,26},
       point = {"RIGHT","LEFT",-6,0},
     },
+  },
+  --buffs
+  buffs = {
+    enabled = true,
+    point = {"RIGHT","LEFT",-5,0},
+    num = 2,
+    cols = 2,
+    size = 22,
+    spacing = 5,
+    initialAnchor = "TOPRIGHT",
+    growthX = "LEFT",
+    growthY = "DOWN",
+    disableCooldown = false,
   },
   --debuffs
   debuffs = {

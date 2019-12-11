@@ -34,16 +34,17 @@ cfg.scale = 0.95
 cfg.fontFamily = STANDARD_TEXT_FONT
 cfg.backdrop = {
   bgFile = "Interface\\Buttons\\WHITE8x8",
+  bgColor = {0.08,0.08,0.1,0.92},
   edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
+  borderColor = {0.1,0.1,0.1,0.6},
+  itemBorderColorAlpha = 0.9,
+  azeriteBorderColor = {1,0.3,0,0.9},
   tile = false,
   tileEdge = false,
   tileSize = 16,
   edgeSize = 16,
   insets = {left=3, right=3, top=3, bottom=3}
 }
-cfg.backdrop.bgColor = {0.08,0.08,0.1,0.92}
-cfg.backdrop.borderColor = {0.3,0.3,0.33,1}
-cfg.backdrop.azeriteBorderColor = {1,0.3,0,1}
 
 --pos can be either a point table or a anchor string
 --cfg.pos = { "BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -10, 180 }
@@ -118,15 +119,14 @@ local function OnTooltipSetUnit(self)
       levelLine:SetTextColor(color.r,color.g,color.b)
     end
     if unitClassification == "worldboss" or UnitLevel(unit) == -1 then
-      self:AppendText(" |TInterface\\TargetingFrame\\UI-TargetingFrame-Skull:14:14|t")
-      --GameTooltipTextLeft1:SetText(("%s%s"):format("|TInterface\\TargetingFrame\\UI-TargetingFrame-Skull:14:14|t", unitName))
+      self:AppendText(" |cffff0000{B}|r")
       GameTooltipTextLeft2:SetTextColor(unpack(cfg.bossColor))
     elseif unitClassification == "rare" then
-      self:AppendText(" |TInterface\\AddOns\\rTooltip\\media\\diablo:14:14:0:0:16:16:0:14:0:14|t")
+      self:AppendText(" |cffff9900{R}|r")
     elseif unitClassification == "rareelite" then
-      self:AppendText(" |TInterface\\AddOns\\rTooltip\\media\\diablo:14:14:0:0:16:16:0:14:0:14|t")
+      self:AppendText(" |cffff0000{R+}|r")
     elseif unitClassification == "elite" then
-      self:AppendText(" |TInterface\\HelpFrame\\HotIssueIcon:14:14|t")
+      self:AppendText(" |cffff6666{E}|r")
     end
   else
     --unit is any player
@@ -162,6 +162,7 @@ local function OnTooltipSetUnit(self)
 end
 
 local function SetBackdropStyle(self,style)
+  if self.IsEmbedded then return end --do nothing on embedded tooltips
   if self.TopOverlay then self.TopOverlay:Hide() end
   if self.BottomOverlay then self.BottomOverlay:Hide() end
   self:SetBackdrop(cfg.backdrop)
@@ -176,7 +177,7 @@ local function SetBackdropStyle(self,style)
     if azerite and cfg.backdrop.azeriteBorderColor then
       self:SetBackdropBorderColor(unpack(cfg.backdrop.azeriteBorderColor))
     else
-      self:SetBackdropBorderColor(r,g,b,1)
+      self:SetBackdropBorderColor(r,g,b,cfg.backdrop.itemBorderColorAlpha)
     end
   else
     --no item, use default border
@@ -219,14 +220,14 @@ cfg.targetColorHex = GetHexColor(cfg.targetColor)
 cfg.afkColorHex = GetHexColor(cfg.afkColor)
 
 GameTooltipHeaderText:SetFont(cfg.fontFamily, 14, "NONE")
-GameTooltipHeaderText:SetShadowOffset(1,-1)
-GameTooltipHeaderText:SetShadowColor(0,0,0,0.9)
+GameTooltipHeaderText:SetShadowOffset(1,-2)
+GameTooltipHeaderText:SetShadowColor(0,0,0,0.75)
 GameTooltipText:SetFont(cfg.fontFamily, 12, "NONE")
-GameTooltipText:SetShadowOffset(1,-1)
-GameTooltipText:SetShadowColor(0,0,0,0.9)
+GameTooltipText:SetShadowOffset(1,-2)
+GameTooltipText:SetShadowColor(0,0,0,0.75)
 Tooltip_Small:SetFont(cfg.fontFamily, 11, "NONE")
-Tooltip_Small:SetShadowOffset(1,-1)
-Tooltip_Small:SetShadowColor(0,0,0,0.9)
+Tooltip_Small:SetShadowOffset(1,-2)
+Tooltip_Small:SetShadowColor(0,0,0,0.75)
 
 --gametooltip statusbar
 GameTooltipStatusBar:ClearAllPoints()
@@ -238,7 +239,7 @@ GameTooltipStatusBar:SetHeight(4)
 GameTooltipStatusBar.bg = GameTooltipStatusBar:CreateTexture(nil,"BACKGROUND",nil,-8)
 GameTooltipStatusBar.bg:SetAllPoints()
 GameTooltipStatusBar.bg:SetColorTexture(1,1,1)
-GameTooltipStatusBar.bg:SetVertexColor(0,0,0,0.7)
+GameTooltipStatusBar.bg:SetVertexColor(0,0,0,0.5)
 
 --GameTooltipStatusBar:SetStatusBarColor()
 hooksecurefunc(GameTooltipStatusBar,"SetStatusBarColor", SetStatusBarColor)

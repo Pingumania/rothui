@@ -15,9 +15,9 @@ local A, L = ...
 L.C.player = {
   enabled = true,
   size = {265,26},
-  point = {"RIGHT",UIParent,"CENTER",-120,-120},
+  point = {"RIGHT",UIParent,"CENTER",-130,-100},
   scale = 1*L.C.globalscale,
-  frameVisibility = "[combat][mod][@target,exists][@vehicle,exists][overridebar][shapeshift][vehicleui][possessbar] show; hide",
+  frameVisibility = "[combat][mod:shift][@target,exists][@vehicle,exists][overridebar][shapeshift][vehicleui][possessbar] show; hide",
   --fader via OnShow
   fader = {
     fadeInAlpha = 1,
@@ -42,13 +42,13 @@ L.C.player = {
         {"TOPLEFT",2,10},
         {"TOPRIGHT",-2,10},
       },
-      size = 17,
+      size = 16,
       tag = "[oUF_SimpleConfig:status]",
     },
     health = {
       enabled = true,
       point = {"RIGHT",-2,0},
-      size = 16,
+      size = 15,
       tag = "[oUF_Simple:health]",
     },
     debuffHighlight = true,
@@ -70,7 +70,7 @@ L.C.player = {
   raidmark = {
     enabled = true,
     size = {18,18},
-    point = {"CENTER","TOP",0,0},
+    point = {"CENTER","TOP",0,4},
   },
   --castbar
   castbar = {
@@ -121,5 +121,12 @@ L.C.player = {
     point = {"TOPRIGHT","TOPLEFT",-4,0},
     orientation = "VERTICAL",
     colorPower = true,
+  },
+  --staggerbar for brewmaster monks
+  staggerbar = {
+    enabled = true,
+    size = {26,35},
+    point = {"TOPRIGHT","TOPLEFT",-4,0},
+    orientation = "VERTICAL",
   },
 }

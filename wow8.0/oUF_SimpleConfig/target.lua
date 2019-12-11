@@ -15,7 +15,7 @@ local A, L = ...
 L.C.target = {
   enabled = true,
   size = {265,26},
-  point = {"LEFT",UIParent,"CENTER",120,-120},
+  point = {"LEFT",UIParent,"CENTER",130,-100},
   scale = 1*L.C.globalscale,
   --fader via OnShow
   fader = {
@@ -45,12 +45,12 @@ L.C.target = {
         {"TOPRIGHT",-2,10},
       },
       size = 16,
-      tag = "[difficulty][name]|r",
+      tag = "[oUF_SimpleConfig:classification][difficulty][name]|r",
     },
     health = {
       enabled = true,
       point = {"RIGHT",-2,0},
-      size = 16,
+      size = 15,
       tag = "[oUF_Simple:health]",
     },
     debuffHighlight = true,
@@ -66,7 +66,7 @@ L.C.target = {
   raidmark = {
     enabled = true,
     size = {18,18},
-    point = {"CENTER","TOP",0,0},
+    point = {"CENTER","TOP",0,4},
   },
   --castbar
   castbar = {
@@ -93,7 +93,7 @@ L.C.target = {
   },
   buffs = {
     enabled = true,
-    point = {"BOTTOMLEFT","RIGHT",10,5},
+    point = {"BOTTOMLEFT","RIGHT",5,5},
     num = 32,
     cols = 8,
     size = 22,
@@ -105,7 +105,7 @@ L.C.target = {
   },
   debuffs = {
     enabled = true,
-    point = {"TOPLEFT","RIGHT",10,-5},
+    point = {"TOPLEFT","RIGHT",5,-5},
     num = 40,
     cols = 8,
     size = 22,
