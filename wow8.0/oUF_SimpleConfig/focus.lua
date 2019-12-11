@@ -32,7 +32,7 @@ L.C.focus = {
         {"LEFT",2,0},
         {"RIGHT",-2,0},
       },
-      size = 16,
+      size = 15,
       align = "CENTER",
       tag = "[name]",
     },
@@ -42,7 +42,7 @@ L.C.focus = {
   raidmark = {
     enabled = true,
     size = {18,18},
-    point = {"CENTER","TOP",0,0},
+    point = {"CENTER","TOP",0,4},
   },
   --castbar
   castbar = {
@@ -55,13 +55,26 @@ L.C.focus = {
         {"LEFT",2,0},
         {"RIGHT",-2,0},
       },
-      size = 16,
+      size = 15,
     },
     icon = {
       enabled = false,
       size = {26,26},
       point = {"RIGHT","LEFT",-6,0},
     },
+  },
+  --buffs
+  buffs = {
+    enabled = true,
+    point = {"LEFT","RIGHT",5,0},
+    num = 2,
+    cols = 2,
+    size = 22,
+    spacing = 5,
+    initialAnchor = "TOPLEFT",
+    growthX = "RIGHT",
+    growthY = "DOWN",
+    disableCooldown = false,
   },
   --debuffs
   debuffs = {

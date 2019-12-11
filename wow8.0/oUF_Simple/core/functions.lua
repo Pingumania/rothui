@@ -118,8 +118,8 @@ local function CreateText(self,font,size,outline,align,noshadow)
   text:SetFont(font or STANDARD_TEXT_FONT, size or 14, outline or "OUTLINE")
   text:SetJustifyH(align or "LEFT")
   if not noshadow then
-    text:SetShadowColor(0,0,0,0.6)
-    text:SetShadowOffset(1,-1)
+    text:SetShadowColor(0,0,0,0.25)
+    text:SetShadowOffset(1,-2)
   end
   --fix some wierd bug
   text:SetText("Bugfix")
@@ -285,6 +285,29 @@ local function CreateAdditionalPowerBar(self)
 end
 L.F.CreateAdditionalPowerBar = CreateAdditionalPowerBar
 
+--CreateStaggerBar
+local function CreateStaggerBar(self)
+  if(select(2, UnitClass('player')) ~= 'MONK') then return end
+  if not self.cfg.staggerbar or not self.cfg.staggerbar.enabled then return end
+  --statusbar
+  local s = CreateFrame("StatusBar", nil, self)
+  s:SetStatusBarTexture(L.C.textures.statusbar)
+  s:SetSize(unpack(self.cfg.staggerbar.size))
+  s:SetOrientation(self.cfg.staggerbar.orientation or "HORIZONTAL")
+  SetPoint(s,self,self.cfg.staggerbar.point)
+  --bg
+  local bg = s:CreateTexture(nil, "BACKGROUND")
+  bg:SetTexture(L.C.textures.statusbarBG)
+  bg:SetAllPoints()
+  s.bg = bg
+  --backdrop
+  CreateBackdrop(s)
+  --attributes
+  s.bg.multiplier = L.C.colors.bgMultiplier
+  return s
+end
+L.F.CreateStaggerBar = CreateStaggerBar
+
 --CreatePowerBar
 local function CreatePowerBar(self)
   if not self.cfg.powerbar or not self.cfg.powerbar.enabled then return end
@@ -304,6 +327,7 @@ local function CreatePowerBar(self)
   --attributes
   s.colorPower = self.cfg.powerbar.colorPower
   s.bg.multiplier = L.C.colors.bgMultiplier
+  s.frequentUpdates = self.cfg.powerbar.frequentUpdates
   return s
 end
 L.F.CreatePowerBar = CreatePowerBar
@@ -374,11 +398,26 @@ local function CreateCastBar(self)
 end
 L.F.CreateCastBar = CreateCastBar
 
-local function CreateRaidMark(self)
+--RaidTargetIndicator
+local function RaidTargetIndicator(self)
   if not self.cfg.raidmark or not self.cfg.raidmark.enabled then return end
-  return CreateIcon(self.Health,"OVERLAY",-8,self.cfg.raidmark.size,self.cfg.raidmark.point)
+  return CreateIcon(self.rAbsorbBar or self.Health,"OVERLAY",-8,self.cfg.raidmark.size,self.cfg.raidmark.point)
 end
-L.F.CreateRaidMark = CreateRaidMark
+L.F.RaidTargetIndicator = RaidTargetIndicator
+
+--ReadyCheckIndicator
+local function ReadyCheckIndicator(self)
+  if not self.cfg.readycheck or not self.cfg.readycheck.enabled then return end
+  return CreateIcon(self.rAbsorbBar or self.Health,"OVERLAY",-8,self.cfg.readycheck.size,self.cfg.readycheck.point)
+end
+L.F.ReadyCheckIndicator = ReadyCheckIndicator
+
+--ResurrectIndicator
+local function ResurrectIndicator (self)
+  if not self.cfg.resurrect or not self.cfg.resurrect.enabled then return end
+  return CreateIcon(self.rAbsorbBar or self.Health,"OVERLAY",-8,self.cfg.resurrect.size,self.cfg.resurrect.point)
+end
+L.F.ResurrectIndicator  = ResurrectIndicator
 
 --CreateNameText
 local function CreateNameText(self)

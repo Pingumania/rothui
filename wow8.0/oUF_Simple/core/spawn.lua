@@ -23,6 +23,7 @@ if L.F.CreatePartyStyle then oUF:RegisterStyle(A.."Party", L.F.CreatePartyStyle)
 if L.F.CreateBossStyle then oUF:RegisterStyle(A.."Boss", L.F.CreateBossStyle) end
 if L.F.CreateNamePlateStyle then oUF:RegisterStyle(A.."Nameplate",L.F.CreateNamePlateStyle) end
 if L.F.CreateRaidStyle then oUF:RegisterStyle(A.."Raid", L.F.CreateRaidStyle) end
+if L.F.CreateArenaStyle then oUF:RegisterStyle(A.."Arena", L.F.CreateArenaStyle) end
 
 -----------------------------
 -- Spawn Units
@@ -158,3 +159,37 @@ if L.F.CreateRaidStyle then
   end
 end
 
+--spawn arena frames
+if L.F.CreateArenaStyle then
+  oUF:SetActiveStyle(A.."Arena")
+  local arena = {}
+  local function PostUpdate(self,event)
+    if event ~= "ARENA_PREP_OPPONENT_SPECIALIZATIONS" then return end
+    self.rAbsorbBar:SetMinMaxValues(0,1)
+    self.rAbsorbBar:SetValue(0)
+    if self.Health.DebuffHighlight and self.Health.DebuffHighlightBackdropBorder then
+      self.Health.DebuffHighlight:SetBackdropBorderColor(unpack(L.C.backdrop.edgeColor))
+    end
+  end
+  local function OverrideArenaPreparation(self,event)
+    if event ~= "ARENA_PREP_OPPONENT_SPECIALIZATIONS" then return end
+    self.Power:SetMinMaxValues(0,1)
+    self.Power:SetValue(0)
+    if self.Power.bg then
+      self.Power.bg:SetVertexColor(0.3,0.3,0.3)
+    end
+  end
+  --constant MAX_ARENA_ENEMIES is part of the blizzard arena ui addon which is not loaded on init
+  for i = 1, 5 do
+    arena[i] = oUF:Spawn("arena"..i, A.."Arena"..i)
+    arena[i].PostUpdate = PostUpdate
+    if arena[i].Power then
+      arena[i].Power.OverrideArenaPreparation = OverrideArenaPreparation
+    end
+    if (i == 1) then
+      arena[i]:SetPoint(unpack(L.C.arena.point))
+    else
+      arena[i]:SetPoint(L.C.arena.setup.point, arena[i-1], L.C.arena.setup.relativePoint, L.C.arena.setup.xOffset, L.C.arena.setup.yOffset)
+    end
+  end
+end

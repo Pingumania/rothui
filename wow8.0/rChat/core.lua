@@ -8,16 +8,14 @@
 
 local A, L = ...
 
-local DefaultSetItemRef = SetItemRef
-
 local cfg = {}
 cfg.dropshadow = {}
-cfg.dropshadow.offset = {1,-1}
-cfg.dropshadow.color = {0,0,0,0.9}
+cfg.dropshadow.offset = {1,-2}
+cfg.dropshadow.color = {0,0,0,0.25}
 cfg.editbox = {}
-cfg.editbox.font = {STANDARD_TEXT_FONT, 13}
+cfg.editbox.font = {STANDARD_TEXT_FONT, 13, "THINOUTLINE"}
 cfg.chat = {}
-cfg.chat.font = {STANDARD_TEXT_FONT, 13} --{STANDARD_TEXT_FONT, 12, "OUTLINE"}
+cfg.chat.font = {STANDARD_TEXT_FONT, 13, "THINOUTLINE"} --{STANDARD_TEXT_FONT, 12, "OUTLINE"}
 
 -----------------------------
 -- Functions
@@ -83,7 +81,8 @@ local function OnMOuseScroll(self,dir)
 end
 
 --we replace the default setitemref and use it to parse links for alt invite and url copy
-function SetItemRef(link, ...)
+local DefaultSetItemRef = SetItemRef
+local function NewSetItemRef(link, ...)
   local type, value = link:match("(%a+):(.+)")
   if IsAltKeyDown() and type == "player" then
     InviteUnit(value:match("([^:]+)"))
@@ -98,9 +97,10 @@ function SetItemRef(link, ...)
     return DefaultSetItemRef(link, ...)
   end
 end
+SetItemRef = NewSetItemRef
 
 --AddMessage
-local function AddMessage(self, text, ...)
+local function NewAddMessage(self, text, ...)
   --channel replace (Trade and such)
   text = text:gsub('|h%[(%d+)%. .-%]|h', '|h%1.|h')
   --url search
@@ -189,7 +189,7 @@ for i = 1, NUM_CHAT_WINDOWS do
   --adjust channel display
   if (i ~= 2) then
     chatframe.DefaultAddMessage = chatframe.AddMessage
-    chatframe.AddMessage = AddMessage
+    chatframe.AddMessage = NewAddMessage
   end
 end
 

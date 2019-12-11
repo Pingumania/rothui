@@ -42,7 +42,7 @@ L.C.pet = {
         {"LEFT",2,0},
         {"RIGHT",-2,0},
       },
-      size = 16,
+      size = 15,
       align = "CENTER",
       tag = "[name]",
     },
@@ -52,7 +52,7 @@ L.C.pet = {
   raidmark = {
     enabled = true,
     size = {18,18},
-    point = {"CENTER","TOP",0,0},
+    point = {"CENTER","TOP",0,4},
   },
   --castbar
   castbar = {
@@ -65,7 +65,7 @@ L.C.pet = {
         {"LEFT",2,0},
         {"RIGHT",-2,0},
       },
-      size = 16,
+      size = 15,
     },
     icon = {
       enabled = true,
@@ -78,6 +78,20 @@ L.C.pet = {
     enabled = true,
     size = {130,5},
     point = {"BOTTOMLEFT","oUF_SimplePlayer","TOPLEFT",0,4},
+  },
+  --buffs
+  buffs = {
+    enabled = false,
+    point = {"RIGHT","LEFT",-5,0},
+    num = 2,
+    cols = 2,
+    size = 22,
+    spacing = 5,
+    initialAnchor = "TOPRIGHT",
+    growthX = "LEFT",
+    growthY = "DOWN",
+    filter = "HELPFUL|PLAYER",
+    disableCooldown = false,
   },
   --debuffs
   debuffs = {
