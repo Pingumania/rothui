@@ -15,7 +15,9 @@ local A, L = ...
 --mediapath
 L.C.mediapath = "interface\\addons\\"..A.."\\media\\"
 
-L.C.globalscale = 0.85
+-- L.C.globalscale = 0.85
+-- Needed for pixel perfect frames
+L.C.globalscale = PixelUtil.GetPixelToUIUnitFactor()
 
 --print("ouf_SimepleConfig:","UI scale",UIParent:GetScale(),"L.C.globalscale",L.C.globalscale)
 

@@ -566,10 +566,10 @@ L.F.SetupHeader = SetupHeader
 --SetupFrame
 local function SetupFrame(self)
   if not self.settings.setupFrame then return end
+  self:SetIgnoreParentScale(true)
+  self:SetScale(L.C.globalscale)
   self:SetSize(unpack(self.cfg.size))
-  SetPoint(self,nil,self.cfg.point)
-  self:SetScale(self.cfg.scale)
-  --print(self:GetName(),self:GetScale(),self:GetEffectiveScale(),self:GetWidth(),self:GetHeight(),self:GetPoint())
+  self:SetPoint(unpack(self.cfg.point))
 end
 L.F.SetupFrame = SetupFrame
 
