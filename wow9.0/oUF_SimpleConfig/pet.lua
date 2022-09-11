@@ -14,10 +14,10 @@ local A, L = ...
 
 L.C.pet = {
   enabled = true,
-  size = {130,26},
-  point = {"TOPLEFT","oUF_SimplePlayer","BOTTOMLEFT",0,-14},
+  size = {131,26},
+  point = {"TOPLEFT","oUF_SimplePlayer","BOTTOMLEFT",0,-10},
   scale = 1*L.C.globalscale,
-  frameVisibility = "[nocombat,nomod,@target,noexists][@pet,noexists] hide; show",
+  -- frameVisibility = "[nocombat,nomod,@target,noexists][@pet,noexists] hide; show",
   --fader via OnShow
   fader = {
     fadeInAlpha = 1,

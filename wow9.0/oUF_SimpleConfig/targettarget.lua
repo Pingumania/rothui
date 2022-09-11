@@ -14,8 +14,8 @@ local A, L = ...
 
 L.C.targettarget = {
   enabled = true,
-  size = {130,26},
-  point = {"TOPLEFT","oUF_SimpleTarget","BOTTOMLEFT",0,-14},
+  size = {131,26},
+  point = {"TOPLEFT","oUF_SimpleTarget","BOTTOMLEFT",0,-10},
   scale = 1*L.C.globalscale,
   --healthbar
   healthbar = {

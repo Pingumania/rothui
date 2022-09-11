@@ -14,8 +14,8 @@ local A, L = ...
 
 L.C.focus = {
   enabled = true,
-  size = {130,26},
-  point = {"TOPRIGHT","oUF_SimplePlayer","BOTTOMRIGHT",0,-14},
+  size = {131,26},
+  point = {"TOPRIGHT","oUF_SimplePlayer","BOTTOMRIGHT",0,-10},
   scale = 1*L.C.globalscale,
   --healthbar
   healthbar = {

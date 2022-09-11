@@ -57,8 +57,7 @@ end
 oUF.Tags.Events["oUF_Simple:leader"] = "PARTY_LEADER_CHANGED GROUP_ROSTER_UPDATE"
 
 --load tags from the config
-if L.C.tagMethods and type(L.C.tagMethods) == "table" and
-   L.C.tagEvents  and type(L.C.tagEvents) == "table" then
+if L.C.tagMethods and type(L.C.tagMethods) == "table" and L.C.tagEvents  and type(L.C.tagEvents) == "table" then
   for key, value in next, L.C.tagMethods do
     if L.C.tagMethods[key] and L.C.tagEvents[key] then
       oUF.Tags.Methods[key] = L.C.tagMethods[key]

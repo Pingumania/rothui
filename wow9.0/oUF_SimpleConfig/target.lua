@@ -14,8 +14,8 @@ local A, L = ...
 
 L.C.target = {
   enabled = true,
-  size = {272,26},
-  point = {"LEFT",UIParent,"CENTER",213,-273},
+  size = {266,30},
+  point = {"LEFT",UIParent,"CENTER",225,-296},
   scale = 1*L.C.globalscale,
   --fader via OnShow
   fader = {
@@ -35,14 +35,14 @@ L.C.target = {
     colorDisconnected = true,
     colorClass = true,
     colorReaction = true,
-    colorHealth = true,
-    colorThreat = true,
+    colorHealth = false,
+    colorThreat = false,
     colorThreatInvers = true,
     name = {
       enabled = true,
       points = {
-        {"TOPLEFT",2,10},
-        {"TOPRIGHT",-2,10},
+        {"TOPLEFT",2,7},
+        {"TOPRIGHT",-2,7},
       },
       size = 16,
       tag = "[oUF_SimpleConfig:classification][difficulty][name]|r",
@@ -50,7 +50,7 @@ L.C.target = {
     health = {
       enabled = true,
       point = {"RIGHT",-2,0},
-      size = 15,
+      size = 16,
       tag = "[oUF_Simple:health]",
     },
     debuffHighlight = false,
@@ -58,8 +58,8 @@ L.C.target = {
   --powerbar
   powerbar = {
     enabled = true,
-    size = {272,5},
-    point = {"TOP","BOTTOM",0,-4}, --if no relativeTo is given the frame base will be the relativeTo reference
+    size = {266,4},
+    point = {"TOP","BOTTOM",0,-3}, --if no relativeTo is given the frame base will be the relativeTo reference
     colorPower = true,
   },
   --leader
@@ -77,8 +77,8 @@ L.C.target = {
   --castbar
   castbar = {
     enabled = true,
-    size = {267,28},
-    point = {"CENTER",UIParent,"BOTTOM",-16,225},
+    size = {300,32},
+    point = {"CENTER",UIParent,"BOTTOM",-18,242},
     name = {
       enabled = true,
       points = {
@@ -89,33 +89,34 @@ L.C.target = {
       size = 16,
       --outline = "",--OUTLINE",
       --align = "CENTER",
-      --noshadow = true,
+      noshadow = true,
     },
     icon = {
       enabled = true,
-      size = {26,26},
-      point = {"LEFT","RIGHT",6,0},
+      size = {31,31},
+      point = {"LEFT","RIGHT",5,0},
     },
   },
   buffs = {
     enabled = true,
-    point = {"BOTTOMRIGHT","TOPRIGHT",0,15},
+    point = {"BOTTOMLEFT","TOPLEFT",0,15},
     num = 32,
-    cols = 4,
+    cols = 8,
     size = 30,
     spacing = 4,
-    initialAnchor = "BOTTOMRIGHT",
-    growthX = "LEFT",
+    initialAnchor = "BOTTOMLEFT",
+    growthX = "RIGHT",
     growthY = "UP",
     disableCooldown = false,
+    filter = "HELPFUL",
   },
   debuffs = {
     enabled = true,
     point = {"BOTTOMLEFT","TOPLEFT",0,15},
     num = 40,
-    cols = 4,
+    cols = 8,
     size = 30,
-    spacing = 8,
+    spacing = 4,
     initialAnchor = "BOTTOMLEFT",
     growthX = "RIGHT",
     growthY = "UP",

@@ -14,8 +14,8 @@ local A, L = ...
 
 L.C.boss = {
   enabled = true,
-  size = {130,26},
-  point = {"TOP",Minimap,"BOTTOM",0,-35}, --point of first boss frame
+  size = {200,32},
+  point = {"TOP",Minimap,"BOTTOM",-375,-155}, --point of first boss frame
   scale = 1*L.C.globalscale,
   --healthbar
   healthbar = {
@@ -27,26 +27,31 @@ L.C.boss = {
     name = {
       enabled = true,
       points = {
-        {"LEFT",2,0},
-        {"RIGHT",-2,0},
+        {"TOPLEFT",2,10},
+        {"TOPRIGHT",-2,10},
       },
-      size = 15,
-      align = "CENTER",
+      size = 18,
       tag = "[name]",
     },
-    debuffHighlight = true,
+    health = {
+      enabled = true,
+      point = {"RIGHT",-2,0},
+      size = 18,
+      tag = "[oUF_Simple:health]",
+    },
+    debuffHighlight = false,
   },
   --powerbar
   powerbar = {
     enabled = true,
-    size = {130,5},
+    size = {200,5},
     point = {"TOP","BOTTOM",0,-4}, --if no relativeTo is given the frame base will be the relativeTo reference
     colorPower = true,
   },
   --altpowerbar
   altpowerbar = {
     enabled = true,
-    size = {130,5},
+    size = {200,5},
     point = {"BOTTOMLEFT","TOPLEFT",0,4},
   },
   --raidmark
@@ -58,7 +63,7 @@ L.C.boss = {
   --castbar
   castbar = {
     enabled = true,
-    size = {130,26},
+    size = {200,26},
     point = {"TOP","BOTTOM",0,-14},
     name = {
       enabled = true,
@@ -66,7 +71,7 @@ L.C.boss = {
         {"LEFT",2,0},
         {"RIGHT",-2,0},
       },
-      size = 15,
+      size = 18,
     },
     icon = {
       enabled = true,
@@ -80,7 +85,7 @@ L.C.boss = {
     point = {"RIGHT","LEFT",-5,0},
     num = 2,
     cols = 2,
-    size = 22,
+    size = 26,
     spacing = 5,
     initialAnchor = "TOPRIGHT",
     growthX = "LEFT",
@@ -89,11 +94,11 @@ L.C.boss = {
   },
   --debuffs
   debuffs = {
-    enabled = true,
+    enabled = false,
     point = {"TOPLEFT","BOTTOMLEFT",0,-14},
     num = 5,
     cols = 5,
-    size = 22,
+    size = 26,
     spacing = 5,
     initialAnchor = "TOPLEFT",
     growthX = "RIGHT",
@@ -104,6 +109,6 @@ L.C.boss = {
     point = "TOP",
     relativePoint = "BOTTOM", --relativeTo will be the boss frame preceding
     xOffset = 0,
-    yOffset = -50,
+    yOffset = -65,
   },
 }

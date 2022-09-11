@@ -16,8 +16,8 @@ local character = UnitName("player")
 
 L.C.party = {
   enabled = false,
-  size = {180,26},
-  point = { "TOPLEFT", "oUF_SimplePlayer", "BOTTOMLEFT", 0, -92 }, --{"TOPLEFT",20,-20},
+  size = {178,22},
+  point = { "BOTTOMRIGHT", "oUF_SimplePlayer", "TOPLEFT", -55, 135 },
   scale = 1*L.C.globalscale,
   --healthbar
   healthbar = {
@@ -33,13 +33,13 @@ L.C.party = {
         {"TOPLEFT",2,10},
         {"TOPRIGHT",-2,10},
       },
-      size = 15,
+      size = 14,
       tag = "[name][oUF_Simple:leader][oUF_Simple:role]",
     },
     health = {
       enabled = true,
       point = {"RIGHT",-2,0},
-      size = 15,
+      size = 14,
       tag = "[oUF_Simple:health]",
     },
     debuffHighlight = true,
@@ -47,8 +47,8 @@ L.C.party = {
   --powerbar
   powerbar = {
     enabled = true,
-    size = {180,5},
-    point = {"TOP","BOTTOM",0,-4}, --if no relativeTo is given the frame base will be the relativeTo reference
+    size = {178,4},
+    point = {"TOP","BOTTOM",0,-3}, --if no relativeTo is given the frame base will be the relativeTo reference
     colorPower = true,
   },
   --raidmark
@@ -91,15 +91,10 @@ L.C.party = {
     showRaid = false,
     point = "TOP",
     xOffset = 0,
-    yOffset = -14,
+    yOffset = -27,
   },
   range = {
     insideAlpha = 1,
     outsideAlpha = .5,
   },
 }
-
---change party point for tank paladin
---if character == "Luavi" then
---  L.C.party.point = { "TOPLEFT", "oUF_SimplePlayer", "BOTTOMLEFT", 0, -92 }
---end

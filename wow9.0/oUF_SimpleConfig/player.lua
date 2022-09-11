@@ -14,8 +14,8 @@ local A, L = ...
 
 L.C.player = {
   enabled = true,
-  size = {265,26},
-  point = {"RIGHT",UIParent,"CENTER",-213,-273},
+  size = {266,30},
+  point = {"RIGHT",UIParent,"CENTER",-225,-296},
   scale = 1*L.C.globalscale,
   -- frameVisibility = "[combat][mod:shift][@target,exists][@vehicle,exists][overridebar][shapeshift][vehicleui][possessbar] show; hide",
   --fader via OnShow
@@ -39,10 +39,9 @@ L.C.player = {
     name = {
       enabled = true,
       points = {
-        {"TOPLEFT",2,10},
-        {"TOPRIGHT",-2,10},
+        {"TOPLEFT",2,7},
+        {"TOPRIGHT",-2,7},
       },
-      size = 12,
       outline = "OUTLINE",
       size = 16,
       tag = "[oUF_SimpleConfig:status]",
@@ -50,7 +49,7 @@ L.C.player = {
     health = {
       enabled = true,
       point = {"RIGHT",-2,0},
-      size = 15,
+      size = 16,
       tag = "[oUF_Simple:health]",
     },
     debuffHighlight = false,
@@ -58,21 +57,16 @@ L.C.player = {
   --powerbar
   powerbar = {
     enabled = true,
-    size = {265,5},
-    point = {"TOP","BOTTOM",0,-4}, --if no relativeTo is given the frame base will be the relativeTo reference
+    size = {266,4},
+    point = {"TOP","BOTTOM",0,-3}, --if no relativeTo is given the frame base will be the relativeTo reference
     colorPower = true,
+    frequentUpdates = true,
     power = {
       enabled = false,
       point = {"RIGHT",-2,0},
       size = 16,
       tag = "[perpp]",
     },
-  },
-  --leader
-  leader = {
-    enabled = true,
-    size = {18,18},
-    point = {"BOTTOMLEFT","TOPLEFT",0,-6},
   },
   --raidmark
   raidmark = {
@@ -83,8 +77,8 @@ L.C.player = {
   --castbar
   castbar = {
     enabled = true,
-    size = {267,28},
-    point = {"CENTER",UIParent,"BOTTOM",16,190},
+    size = {300,32},
+    point = {"CENTER",UIParent,"BOTTOM",18,200},
     --orientation = "VERTICAL",
     name = {
       enabled = true,
@@ -96,19 +90,19 @@ L.C.player = {
       size = 16,
       --outline = "",--OUTLINE",
       --align = "CENTER",
-      --noshadow = true,
+      noshadow = true,
     },
     icon = {
       enabled = true,
-      size = {26,26},
-      point = {"RIGHT","LEFT",-6,0},
+      size = {31,31},
+      point = {"RIGHT","LEFT",-5,0},
     },
   },
   --classbar
   classbar = {
     enabled = true,
-    size = {130,5},
-    point = {"BOTTOMRIGHT","TOPRIGHT",0,4},
+    size = {22,4},
+    point = {"BOTTOMRIGHT","TOPRIGHT",0,3},
     splits = {
       enabled = true,
       texture = L.C.textures.split,
