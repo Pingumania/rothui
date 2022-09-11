@@ -50,6 +50,7 @@ L.C.party = {
     size = {178,4},
     point = {"TOP","BOTTOM",0,-3}, --if no relativeTo is given the frame base will be the relativeTo reference
     colorPower = true,
+    onlyMana = true,
   },
   --raidmark
   raidmark = {
