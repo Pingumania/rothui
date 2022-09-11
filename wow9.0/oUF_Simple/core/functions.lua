@@ -650,7 +650,15 @@ local function CreatePowerText(self)
   else
     SetPoint(text,self.Power,cfg.point)
   end
+  if self.cfg.powerbar.power.mouseover then
+    text:Hide()
+    self:HookScript("OnEnter", function() text:Show() end)
+    self:HookScript("OnLeave", function() text:Hide() end)
+    self.Power:HookScript("OnEnter", function() text:Show() end)
+    self.Power:HookScript("OnLeave", function() text:Hide() end)
+  end
   self:Tag(text, cfg.tag)
+  self.Power.Text = text
 end
 L.F.CreatePowerText = CreatePowerText
 

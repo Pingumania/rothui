@@ -65,6 +65,13 @@ L.C.target = {
     size = {266,4},
     point = {"TOP","BOTTOM",0,-3}, --if no relativeTo is given the frame base will be the relativeTo reference
     colorPower = true,
+    power = {
+      enabled = false,
+      mouseover = false,
+      point = {"CENTER"},
+      size = 14,
+      tag = "[curpp]",
+    },
   },
   --leader
   leader = {

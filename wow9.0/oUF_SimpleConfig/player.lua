@@ -67,9 +67,10 @@ L.C.player = {
     frequentUpdates = true,
     power = {
       enabled = false,
-      point = {"RIGHT",-2,0},
-      size = 16,
-      tag = "[perpp]",
+      mouseover = false,
+      point = {"CENTER"},
+      size = 14,
+      tag = "[curpp]",
     },
   },
   --raidmark
