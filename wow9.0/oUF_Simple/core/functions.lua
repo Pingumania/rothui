@@ -398,6 +398,13 @@ local function CreateCastBar(self)
 end
 L.F.CreateCastBar = CreateCastBar
 
+--LeaderIndicator
+local function LeaderIndicator(self)
+  if not self.cfg.leader or not self.cfg.leader.enabled then return end
+  return CreateIcon(self.rAbsorbBar or self.Health,"OVERLAY",-8,self.cfg.leader.size,self.cfg.leader.point)
+end
+L.F.LeaderIndicator = LeaderIndicator
+
 --RaidTargetIndicator
 local function RaidTargetIndicator(self)
   if not self.cfg.raidmark or not self.cfg.raidmark.enabled then return end
