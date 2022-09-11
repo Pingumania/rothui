@@ -21,7 +21,7 @@ local function CreateStyle(self)
   end
   L.F.SetupFrame(self)
   L.F.SetupHeader(self)
-  L.F.CreateDragFrame(self)
+  -- L.F.CreateDragFrame(self)
   self.Health = L.F.CreateHealthBar(self)
   self.ThreatIndicator = L.F.CreateThreatIndicator(self)
   -- self.rAbsorbBar = L.F.CreateAbsorbBar(self)
