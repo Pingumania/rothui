@@ -503,13 +503,19 @@ local function CreatePowerText(self)
 end
 L.F.CreatePowerText = CreatePowerText
 
---PostCreateAura
-local function PostCreateAura(self,button)
+--PostCreateAuras
+local function PostCreateAuras(self,button)
   local bg = button:CreateTexture(nil,"BACKGROUND",nil,-8)
   bg:SetTexture(L.C.textures.aura)
   bg:SetVertexColor(0,0,0)
-  bg:SetPoint("TOPLEFT", -self.size/4, self.size/4)
-  bg:SetPoint("BOTTOMRIGHT", self.size/4, -self.size/4)
+  bg:SetPoint("TOPLEFT", -7, 7)
+  bg:SetPoint("BOTTOMRIGHT", 7, -7)
+  button.bg = bg
+  local border = button:CreateTexture(nil,"BACKGROUND")
+  border:SetColorTexture(0,0,0)
+  border:SetPoint("TOPLEFT", -1, 1)
+  border:SetPoint("BOTTOMRIGHT", 1, -1)
+  button.border = border
   button.icon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
   button.count:SetFont(STANDARD_TEXT_FONT, self.size/1.65, "OUTLINE")
   button.count:SetShadowColor(0,0,0,0.6)
@@ -517,6 +523,26 @@ local function PostCreateAura(self,button)
   button.count:ClearAllPoints()
   button.count:SetPoint("BOTTOMRIGHT", self.size/10, -self.size/10)
   button:SetFrameStrata("LOW")
+end
+
+--PostUpdateIcon
+local function PostUpdateIcon(self,unit,button,index)
+  local debuffType = select(4, UnitAura(unit, index, button.filter))
+  local color = DebuffTypeColor[debuffType]
+  button.bg:Show()
+  button.border:Show()
+  if button.isDebuff then
+    color = color or DebuffTypeColor["none"]
+  else
+    color = color or L.C.colors.default
+  end
+  button.border:SetColorTexture(color.r, color.g, color.b)
+end
+
+--PostUpdateGapIcon
+local function PostUpdateGapIcon(self,unit,button,visibleBuffs)
+  button.bg:Hide()
+  button.border:Hide()
 end
 
 --CreateBuffs
@@ -534,12 +560,12 @@ local function CreateBuffs(self)
   frame.disableCooldown = cfg.disableCooldown
   frame.filter = cfg.filter
   frame.CustomFilter = cfg.CustomFilter
-  frame.PostCreateIcon = cfg.PostCreateAura or PostCreateAura
-  --frame.PostUpdateIcon = PostUpdateBuff
+  frame.PostCreateIcon = cfg.PostCreateAura or PostCreateAuras
+  -- frame.PostUpdateIcon = PostUpdateIcon
   frame:SetSize(CalcFrameSize(cfg.num,cfg.cols,cfg.size,cfg.size,cfg.spacing,0))
-  --local t = frame:CreateTexture(nil,"BACKGROUND",nil,-8)
-  --t:SetAllPoints()
-  --t:SetColorTexture(0,1,0,0.2)
+  -- local t = frame:CreateTexture(nil,"BACKGROUND",nil,-8)
+  -- t:SetAllPoints()
+  -- t:SetColorTexture(0,1,0,0.2)
   return frame
 end
 L.F.CreateBuffs = CreateBuffs
@@ -559,15 +585,45 @@ local function CreateDebuffs(self)
   frame.disableCooldown = cfg.disableCooldown
   frame.filter = cfg.filter
   frame.CustomFilter = cfg.CustomFilter
-  frame.PostCreateIcon = cfg.PostCreateAura or PostCreateAura
-  --frame.PostUpdateIcon = PostUpdateDebuff
+  frame.PostCreateIcon = cfg.PostCreateAura or PostCreateAuras
+  frame.PostUpdateIcon = PostUpdateIcon
   frame:SetSize(CalcFrameSize(cfg.num,cfg.cols,cfg.size,cfg.size,cfg.spacing,0))
-  --local t = frame:CreateTexture(nil,"BACKGROUND",nil,-8)
-  --t:SetAllPoints()
-  --t:SetColorTexture(1,0,0,0.2)
+  -- local t = frame:CreateTexture(nil,"BACKGROUND",nil,-8)
+  -- t:SetAllPoints()
+  -- t:SetColorTexture(1,0,0,0.2)
   return frame
 end
 L.F.CreateDebuffs = CreateDebuffs
+
+--CreateAuras
+local function CreateAuras(self)
+  if not self.cfg.auras or not self.cfg.auras.enabled then return end
+  local cfg = self.cfg.auras
+  local frame = CreateFrame("Frame", nil, self)
+  SetPoint(frame,self,cfg.point)
+  frame.numBuffs = cfg.numBuffs
+  frame.numDebuffs = cfg.numDebuffs
+  frame.numTotal = cfg.numTotal
+  frame.size = cfg.size
+  frame.spacing = cfg.spacing
+  frame.gap = cfg.gap
+  frame.initialAnchor = cfg.initialAnchor
+  frame["growth-x"] = cfg.growthX
+  frame["growth-y"] = cfg.growthY
+  frame.disableCooldown = cfg.disableCooldown
+  frame.buffFilter = cfg.buffFilter
+  frame.debuffFilter = cfg.debuffFilter
+  frame.CustomFilter = cfg.CustomFilter
+  frame.PostCreateIcon = cfg.PostCreateAura or PostCreateAuras
+  frame.PostUpdateIcon = PostUpdateIcon
+  frame.PostUpdateGapIcon = PostUpdateGapIcon
+  frame:SetSize(CalcFrameSize(cfg.numTotal,cfg.cols,cfg.size,cfg.size,cfg.spacing,0))
+  -- local t = frame:CreateTexture(nil,"BACKGROUND",nil,-8)
+  -- t:SetAllPoints()
+  -- t:SetColorTexture(1,0,0,0.2)
+  return frame
+end
+L.F.CreateAuras = CreateAuras
 
 --SetupHeader
 local function SetupHeader(self)
