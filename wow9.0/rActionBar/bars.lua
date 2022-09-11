@@ -42,6 +42,8 @@ function rActionBar:CreateMicroMenuBar(addonName,cfg)
   PetBattleFrame.BottomFrame.MicroButtonFrame:SetScript("OnShow", nil)
   OverrideActionBar:SetScript("OnShow", nil)
   MainMenuBar:SetScript("OnShow", nil)
+  MainMenuBar:SetMovable(true)
+  MainMenuBar:SetUserPlaced(true)
 end
 
 --Bar1
