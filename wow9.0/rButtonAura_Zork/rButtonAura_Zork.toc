@@ -1,7 +1,0 @@
-## Interface: 90105
-## Title: rButtonAura_Zork
-## Author: zork
-## Notes: Zork's config for rButtonAura
-## RequiredDeps: rButtonAura
-
-config.lua

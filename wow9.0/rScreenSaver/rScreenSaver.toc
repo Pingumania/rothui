@@ -1,6 +1,0 @@
-## Interface: 90105
-## Author: zork
-## Title: rScreenSaver
-## Notes: Does not save your screen. Doh!
-
-core.lua
