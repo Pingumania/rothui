@@ -134,8 +134,8 @@ end
 L.F.UpdateThreat = UpdateThreat
 
 --CreateText
-local function CreateText(self,font,size,outline,align,noshadow)
-  local text = self:CreateFontString(nil, "ARTWORK") --"BORDER", "OVERLAY"
+local function CreateText(self, font, size, outline, align, noshadow)
+  local text = self:CreateFontString(nil, "ARTWORK")
   text:SetFont(font or STANDARD_TEXT_FONT, size or 14, outline or "OUTLINE")
   text:SetJustifyH(align or "LEFT")
   if not noshadow then
@@ -368,7 +368,7 @@ L.F.CreateAdditionalPowerBar = CreateAdditionalPowerBar
 
 --CreateStaggerBar
 local function CreateStaggerBar(self)
-  if(select(2, UnitClass('player')) ~= 'MONK') then return end
+  if(select(2, UnitClass("player")) ~= "MONK") then return end
   if not self.cfg.staggerbar or not self.cfg.staggerbar.enabled then return end
   --statusbar
   local s = CreateFrame("StatusBar", nil, self)
