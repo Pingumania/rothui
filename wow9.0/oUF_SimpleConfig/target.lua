@@ -55,6 +55,10 @@ L.C.target = {
     },
     debuffHighlight = false,
   },
+  --absorbbar
+  absorbbar = {
+    enabled = true,
+  },
   --powerbar
   powerbar = {
     enabled = true,

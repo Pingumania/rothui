@@ -54,6 +54,10 @@ L.C.player = {
     },
     debuffHighlight = false,
   },
+  --absorbbar
+  absorbbar = {
+    enabled = true,
+  },
   --powerbar
   powerbar = {
     enabled = true,

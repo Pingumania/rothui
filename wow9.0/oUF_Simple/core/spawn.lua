@@ -168,8 +168,8 @@ if L.F.CreateArenaStyle then
   local arena = {}
   local function PostUpdate(self,event)
     if event ~= "ARENA_PREP_OPPONENT_SPECIALIZATIONS" then return end
-    self.rAbsorbBar:SetMinMaxValues(0,1)
-    self.rAbsorbBar:SetValue(0)
+    -- self.rAbsorbBar:SetMinMaxValues(0,1)
+    -- self.rAbsorbBar:SetValue(0)
     if self.Health.DebuffHighlight and self.Health.DebuffHighlightBackdropBorder then
       self.Health.DebuffHighlight:SetBackdropBorderColor(unpack(L.C.backdrop.edgeColor))
     end
