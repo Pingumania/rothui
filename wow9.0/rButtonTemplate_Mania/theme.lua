@@ -183,6 +183,19 @@ extraButtonConfig.buttonstyle = { file = "" }
 rButtonTemplate:StyleExtraActionButton(extraButtonConfig)
 
 -----------------------------
+-- zoneAbilityButtonconfig
+-----------------------------
+
+local zoneAbilityButtonconfig = copyTable(actionButtonConfig)
+zoneAbilityButtonconfig.buttonstyle = { file = "" }
+
+--rButtonTemplate:StyleZoneAbilityButton
+rButtonTemplate:StyleZoneAbilityButton(zoneAbilityButtonconfig)
+hooksecurefunc(ZoneAbilityFrame, "UpdateDisplayedZoneAbilities", function()
+  rButtonTemplate:StyleZoneAbilityButton(zoneAbilityButtonconfig)
+end)
+
+-----------------------------
 -- auraButtonConfig
 -----------------------------
 

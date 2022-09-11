@@ -266,6 +266,46 @@ function rButtonTemplate:StyleExtraActionButton(cfg)
   button.__styled = true
 end
 
+function rButtonTemplate:StyleZoneAbilityButton(cfg)
+
+  local buttonstyle = ZoneAbilityFrame.Style --artwork around the button
+  buttonstyle:SetAlpha(0)
+
+  for button in ZoneAbilityFrame.SpellButtonContainer:EnumerateActive() do
+    if not button then break end
+    if button.__styled then return end
+
+    local buttonName = button:GetName()
+
+    local icon = button.Icon
+    local count = button.Count
+    local cooldown = button.Cooldown
+
+    local normalTexture = button:GetNormalTexture()
+    local pushedTexture = button:GetPushedTexture()
+    local highlightTexture = button:GetHighlightTexture()
+    -- local checkedTexture = button:GetCheckedTexture()
+
+    --backdrop
+    SetupBackdrop(button,cfg.backdrop)
+
+    --textures
+    SetupTexture(icon,cfg.icon,"SetTexture",icon)
+    SetupTexture(normalTexture,cfg.normalTexture,"SetNormalTexture",button)
+    SetupTexture(pushedTexture,cfg.pushedTexture,"SetPushedTexture",button)
+    SetupTexture(highlightTexture,cfg.highlightTexture,"SetHighlightTexture",button)
+    -- SetupTexture(checkedTexture,cfg.checkedTexture,"SetCheckedTexture",button)
+
+    --cooldown
+    SetupCooldown(cooldown,cfg.cooldown)
+
+    --hotkey, count
+    SetupFontString(count,cfg.count)
+
+    button.__styled = true
+  end
+end
+
 function rButtonTemplate:StyleItemButton(button,cfg)
 
   if not button then return end

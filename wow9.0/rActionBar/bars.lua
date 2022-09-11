@@ -205,6 +205,30 @@ function rActionBar:CreateExtraBar(addonName,cfg)
   ExtraActionBarFrame.ignoreFramePositionManager = true
 end
 
+--ZoneAbilityBar
+function rActionBar:CreateZoneAbilityBar(addonName,cfg)
+  cfg.blizzardBar = ZoneAbilityFrame
+  cfg.frameName = addonName.."ZoneAbilityBar"
+  cfg.frameParent = cfg.frameParent or UIParent
+  cfg.frameTemplate = "SecureHandlerStateTemplate"
+  cfg.frameVisibility = cfg.frameVisibility or "show"
+  local container = ZoneAbilityFrame.SpellButtonContainer
+  local buttonList = L:GetSpellButtonList(container)
+  local frame = L:CreateButtonFrame(cfg,buttonList)
+  --special
+  ZoneAbilityFrame.ignoreFramePositionManager = true
+  hooksecurefunc(ZoneAbilityFrame, "UpdateDisplayedZoneAbilities", function()
+    rActionBar:UpdateZoneAbilityBar(frame,cfg)
+  end)
+end
+
+function rActionBar:UpdateZoneAbilityBar(frame,cfg)
+  local container = ZoneAbilityFrame.SpellButtonContainer
+  local buttonList = L:GetSpellButtonList(container)
+  -- print(frame)
+  L:UpdateButtonFrame(frame,cfg,buttonList)
+end
+
 --VehicleExitBar
 function rActionBar:CreateVehicleExitBar(addonName,cfg)
   cfg.blizzardBar = nil

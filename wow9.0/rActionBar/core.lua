@@ -34,6 +34,15 @@ function L:GetButtonList(buttonName,numButtons)
   return buttonList
 end
 
+function L:GetSpellButtonList(container)
+  local buttonList = {}
+  for button in container:EnumerateActive() do
+    if not button then break end
+    table.insert(buttonList, button)
+  end
+  return buttonList
+end
+
 --points
 --1. p1, f, fp1, fp2
 --2. p2, rb-1, p3, bm1, bm2
@@ -56,7 +65,7 @@ local function SetupButtonPoints(frame, buttonList, buttonWidth, buttonHeight, n
 end
 
 local function SetupButtonFrame(frame, framePadding, buttonList, buttonWidth, buttonHeight, buttonMargin, numCols, startPoint)
-  local numButtons = # buttonList
+  local numButtons = #buttonList
   numCols = min(numButtons, numCols)
   local numRows = ceil(numButtons/numCols)
   local frameWidth = numCols*buttonWidth + (numCols-1)*buttonMargin + 2*framePadding
@@ -92,6 +101,10 @@ local function SetupButtonFrame(frame, framePadding, buttonList, buttonWidth, bu
     startPoint = "BOTTOMLEFT"
     SetupButtonPoints(frame, buttonList, buttonWidth, buttonHeight, numCols, startPoint, framePadding, framePadding, "BOTTOM", "TOP", 0, buttonMargin, "LEFT", "RIGHT", buttonMargin, 0)
   end
+end
+
+function L:UpdateButtonFrame(frame,cfg,buttonList)
+  SetupButtonFrame(frame, cfg.framePadding, buttonList, cfg.buttonWidth, cfg.buttonHeight, cfg.buttonMargin, cfg.numCols, cfg.startPoint)
 end
 
 function L:CreateButtonFrame(cfg,buttonList,delaySetup)

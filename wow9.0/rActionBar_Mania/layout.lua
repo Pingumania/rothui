@@ -215,8 +215,8 @@ rActionBar:CreatePetBar(A, petbar)
 -----------------------------
 
 local extrabar = {
-  framePoint      = { "BOTTOM", A.."Bar1", "TOP", 0, 10 },
-  frameScale      = 0.95,
+  framePoint      = { "BOTTOMLEFT", A.."PetBar", "TOPLEFT", 0, 10 },
+  frameScale      = 1,
   framePadding    = 5,
   buttonWidth     = 36,
   buttonHeight    = 36,
@@ -229,11 +229,29 @@ local extrabar = {
 rActionBar:CreateExtraBar(A, extrabar)
 
 -----------------------------
+-- ZoneAbilityBar
+-----------------------------
+
+local zoneabilitybar = {
+  framePoint      = { "BOTTOMLEFT", A.."PetBar", "TOPLEFT", 0, 42 },
+  frameScale      = 1,
+  framePadding    = 5,
+  buttonWidth     = 52,
+  buttonHeight    = 52,
+  buttonMargin    = 5,
+  numCols         = 1,
+  startPoint      = "BOTTOMLEFT",
+  fader           = nil,
+}
+--create
+rActionBar:CreateZoneAbilityBar(A, zoneabilitybar)
+
+-----------------------------
 -- VehicleExitBar
 -----------------------------
 
 local vehicleexitbar = {
-  framePoint      = { "BOTTOMRIGHT", "UIParent", "BOTTOMRIGHT", 0, 0 },
+  framePoint      = { "BOTTOMRIGHT", A.."Bar3", "TOPRIGHT", 0, 10 },
   frameScale      = 0.95,
   framePadding    = 5,
   buttonWidth     = 36,
