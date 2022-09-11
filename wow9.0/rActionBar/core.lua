@@ -64,13 +64,15 @@ local function SetupButtonPoints(frame, buttonList, buttonWidth, buttonHeight, n
   end
 end
 
-local function SetupButtonFrame(frame, framePadding, buttonList, buttonWidth, buttonHeight, buttonMargin, numCols, startPoint)
+local function SetupButtonFrame(frame, framePadding, buttonList, buttonWidth, buttonHeight, buttonMargin, numCols, startPoint, update)
   local numButtons = #buttonList
   numCols = min(numButtons, numCols)
   local numRows = ceil(numButtons/numCols)
   local frameWidth = numCols*buttonWidth + (numCols-1)*buttonMargin + 2*framePadding
   local frameHeight = numRows*buttonHeight + (numRows-1)*buttonMargin + 2*framePadding
-  frame:SetSize(frameWidth,frameHeight)
+  if not update then
+    frame:SetSize(frameWidth,frameHeight)
+  end
   --TOPLEFT
   --1. TL, f, p, -p
   --2. T, rb-1, B, 0, -m
@@ -104,7 +106,7 @@ local function SetupButtonFrame(frame, framePadding, buttonList, buttonWidth, bu
 end
 
 function L:UpdateButtonFrame(frame,cfg,buttonList)
-  SetupButtonFrame(frame, cfg.framePadding, buttonList, cfg.buttonWidth, cfg.buttonHeight, cfg.buttonMargin, cfg.numCols, cfg.startPoint)
+  SetupButtonFrame(frame, cfg.framePadding, buttonList, cfg.buttonWidth, cfg.buttonHeight, cfg.buttonMargin, cfg.numCols, cfg.startPoint, true)
 end
 
 function L:CreateButtonFrame(cfg,buttonList,delaySetup)
