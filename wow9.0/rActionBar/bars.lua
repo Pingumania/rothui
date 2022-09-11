@@ -113,6 +113,19 @@ function rActionBar:CreateActionBar3(addonName,cfg)
   local numButtons = NUM_ACTIONBAR_BUTTONS
   local buttonList = L:GetButtonList(buttonName, numButtons)
   local frame = L:CreateButtonFrame(cfg,buttonList)
+  -- not sure why this is needed for this bar
+  local function ToggleButtonGrid()
+    if InCombatLockdown() then
+      print("Grid toggle for actionbar1 is not possible in combat.")
+      return
+    end
+    local showgrid = tonumber(GetCVar("alwaysShowActionBars"))
+    for i, button in next, buttonList do
+      button:SetAttribute("showgrid", showgrid)
+      button:ShowGrid(ACTION_BUTTON_SHOW_GRID_REASON_EVENT)
+    end
+  end
+  hooksecurefunc("MultiActionBar_UpdateGridVisibility", ToggleButtonGrid)
 end
 
 --Bar4
