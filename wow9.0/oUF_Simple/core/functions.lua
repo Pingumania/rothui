@@ -98,7 +98,17 @@ end
 
 --PostUpdateHealth
 local function PostUpdateHealth(self, unit, min, max)
-  ColorHealthbarOnThreat(self,unit)
+  ColorHealthbarOnThreat(self, unit)
+end
+
+--PostUpdatePower
+local function PostUpdatePower(self, unit)
+  if UnitPowerType(unit) ~= Enum.PowerType.Mana then
+    self:Hide()
+  else
+    self:Show()
+  end
+end
 end
 
 local function UpdateThreat(self)
@@ -346,6 +356,11 @@ local function CreatePowerBar(self)
   s.colorPower = self.cfg.powerbar.colorPower
   s.bg.multiplier = L.C.colors.bgMultiplier
   s.frequentUpdates = self.cfg.powerbar.frequentUpdates
+  
+  if self.cfg.powerbar.onlyMana then
+    s.PostUpdate = PostUpdatePower
+  end
+
   return s
 end
 L.F.CreatePowerBar = CreatePowerBar
