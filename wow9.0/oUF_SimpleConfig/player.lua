@@ -44,7 +44,7 @@ L.C.player = {
       },
       outline = "OUTLINE",
       size = 16,
-      tag = "[oUF_SimpleConfig:status]",
+      tag = "[oUF_Simple:leader][oUF_SimpleConfig:status]",
     },
     health = {
       enabled = true,
