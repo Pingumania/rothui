@@ -212,8 +212,8 @@ auraButtonConfig.symbol = copyTable(actionButtonConfig.name)
 auraButtonConfig.symbol.alpha = 1
 
 --rButtonTemplate:StyleBuffButtons + rButtonTemplate:StyleTempEnchants
-rButtonTemplate:StyleBuffButtons(auraButtonConfig)
-rButtonTemplate:StyleTempEnchants(auraButtonConfig)
+-- rButtonTemplate:StyleBuffButtons(auraButtonConfig)
+-- rButtonTemplate:StyleTempEnchants(auraButtonConfig)
 
 -----------------------------
 -- debuffButtonConfig
@@ -225,4 +225,4 @@ debuffButtonConfig.count.font = { STANDARD_TEXT_FONT, 12.5, "OUTLINE"}
 debuffButtonConfig.duration.font = { STANDARD_TEXT_FONT, 12.5, "OUTLINE"}
 
 --rButtonTemplate:StyleDebuffButtons
-rButtonTemplate:StyleDebuffButtons(debuffButtonConfig)
+-- rButtonTemplate:StyleDebuffButtons(debuffButtonConfig)
