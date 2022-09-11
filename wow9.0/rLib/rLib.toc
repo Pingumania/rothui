@@ -1,7 +1,8 @@
-## Interface: 90205
-## Author: zork
+## Interface: 90207
+
 ## Title: rLib
 ## Notes: Zork's addon library.
+## Author: Pingumania, zork
 
 core.lua
 dragframe.lua

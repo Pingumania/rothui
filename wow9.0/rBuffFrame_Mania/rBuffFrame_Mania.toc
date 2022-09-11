@@ -1,7 +1,9 @@
-## Interface: 90105
-## Author: Mania
+## Interface: 90207
+
 ## Title: rBuffFrame_Mania
-## Notes: Mania's buff frame layout for rBuffFrame
+## Notes: Pingumania's buff frame layout for rBuffFrame
+## Author: Pingumania, zork
+
 ## RequiredDeps: rLib, rBuffFrame
 
 layout.lua

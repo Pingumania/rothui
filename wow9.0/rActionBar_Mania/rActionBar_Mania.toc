@@ -1,7 +1,9 @@
-## Interface: 90105
-## Author: Mania
+## Interface: 90207
+
 ## Title: rActionBar_Mania
 ## Notes: Mania's bar layout for rActionBar
+## Author: Pingumania, zork
+
 ## RequiredDeps: rActionBar
 
 layout.lua

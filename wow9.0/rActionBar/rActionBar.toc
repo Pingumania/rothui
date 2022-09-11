@@ -1,7 +1,9 @@
-## Interface: 90105
-## Author: zork
+## Interface: 90207
+
 ## Title: rActionBar
 ## Notes: Blizzard actionbar framework
+## Author: Pingumania, zork
+
 ## RequiredDeps: rLib
 
 core.lua

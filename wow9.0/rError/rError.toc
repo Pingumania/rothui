@@ -1,6 +1,7 @@
-## Interface: 90105
-## Author: zork
+## Interface: 90207
+
 ## Title: rError
 ## Notes: Blacklisting and redirecting of error messages
+## Author: Pingumania, zork
 
 core.lua

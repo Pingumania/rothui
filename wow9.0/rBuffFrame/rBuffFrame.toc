@@ -1,7 +1,9 @@
-## Interface: 90105
-## Author: zork
+## Interface: 90207
+
 ## Title: rBuffFrame
 ## Notes: Blizzard buffframe framework
+## Author: Pingumania, zork
+
 ## RequiredDeps: rLib
 
 core.lua

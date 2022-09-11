@@ -1,8 +1,10 @@
-## Interface: 90205
+## Interface: 90207
+
 ## Title: oUF_Simple
-## Author: zork
 ## Notes: Simple oUF layout
-## Dependencies: oUF, rLib, oUF_SimpleConfig
+## Author: Pingumania, zork
+
+## RequiredDeps: oUF, rLib, oUF_SimpleConfig
 
 modules\rAbsorbBar.lua
 modules\rClassBar.lua

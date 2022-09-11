@@ -1,7 +1,9 @@
-## Interface: 90205
-## Author: zork
+## Interface: 90207
+
 ## Title: oUF_SimpleConfig
 ## Notes: oUF_Simple config
+## Author: Pingumania, zork
+
 ## RequiredDeps: rLib
 
 init.lua

@@ -1,6 +1,7 @@
-## Interface: 90105
-## Author: zork
+## Interface: 90207
+
 ## Title: rChat
 ## Notes: Chat enhancements
+## Author: Pingumania, zork
 
 core.lua

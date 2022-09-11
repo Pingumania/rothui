@@ -1,7 +1,9 @@
-## Interface: 90105
-## Author: Mania
+## Interface: 90207
+
 ## Title: rButtonTemplate_Mania
-## Notes: Mania's button theme for rButtonTemplate
+## Notes: Pingumania's button theme for rButtonTemplate
+## Author: Pingumania, zork
+
 ## RequiredDeps: rLib, rButtonTemplate
 
 theme.lua

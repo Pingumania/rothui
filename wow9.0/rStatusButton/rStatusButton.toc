@@ -1,7 +1,9 @@
-## Interface: 90105
-## Author: zork
+## Interface: 90207
+
 ## Title: rStatusButton
 ## Notes: Hover me for all dem statuses mon!
+## Author: Pingumania, zork
+
 ## RequiredDeps: rLib
 
 core.lua

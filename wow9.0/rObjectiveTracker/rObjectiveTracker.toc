@@ -1,7 +1,9 @@
-## Interface: 90105
-## Author: zork
+## Interface: 90207
+
 ## Title: rObjectiveTracker
 ## Notes: Allows moving and resizing of Blizzard objective tracker
+## Author: Pingumania, zork
+
 ## RequiredDeps: rLib, Blizzard_ObjectiveTracker
 
 core.lua
