@@ -101,14 +101,25 @@ local function PostUpdateHealth(self, unit, min, max)
   ColorHealthbarOnThreat(self,unit)
 end
 
---UpdateThreat
-local function UpdateThreat(self,event,unit)
-  if event == "PLAYER_REGEN_DISABLED" or event == "PLAYER_REGEN_ENABLED" then
-    --do natting
-  elseif self.unit ~= unit then
-    return
-  end
-  self.Health:ForceUpdate()
+local function UpdateThreat(self)
+  local status
+	-- BUG: Non-existent '*target' or '*pet' units cause UnitThreatSituation() errors
+	if (UnitExists(self.unit)) then
+		status = UnitThreatSituation(self.unit )
+	end
+
+  local t = self.ThreatIndicator
+	local r, g, b
+	if (status and status > 0) then
+		r, g, b = unpack(L.C.colors.threat[status])
+		if (t.bd.SetBackdropColor) then
+      t.bd:SetBackdropColor(r, g, b)
+			t.bd:SetBackdropBorderColor(r, g, b)
+		end
+		t.bd:Show()
+	else
+		t.bd:Hide()
+	end
 end
 L.F.UpdateThreat = UpdateThreat
 
@@ -252,15 +263,22 @@ local function CreateHealthBar(self)
   s.frequentUpdates = self.cfg.healthbar.frequentUpdates
   --hooks
   s.PostUpdate = PostUpdateHealth
-  if s.colorThreat then
-    self:RegisterUnitEvent("PLAYER_ENTER_COMBAT", L.F.UpdateThreat)
-    self:RegisterUnitEvent("PLAYER_LEAVE_COMBAT", L.F.UpdateThreat)
-    self:RegisterEvent("UNIT_THREAT_SITUATION_UPDATE", L.F.UpdateThreat)
-    self:RegisterEvent("UNIT_THREAT_LIST_UPDATE", L.F.UpdateThreat)
-  end
   return s
 end
 L.F.CreateHealthBar = CreateHealthBar
+
+--CreateThreatIndicator
+local function CreateThreatIndicator(self)
+  if self.unit ~= "player" then return end
+  local s = CreateFrame("StatusBar", nil, self)
+  SetPoints(s,self.Health,{{"TOPLEFT","TOPLEFT",-4,4},{"BOTTOMRIGHT","BOTTOMRIGHT",4,-4}})
+  s.bd = CreateBackdrop(s)
+  s.bd:SetPoint("TOPLEFT", s, "TOPLEFT", -3, 3)
+  s.bd:SetPoint("BOTTOMRIGHT", s, "BOTTOMRIGHT", 3, -3)
+  s.Override = L.F.UpdateThreat
+  return s
+end
+L.F.CreateThreatIndicator = CreateThreatIndicator
 
 --CreateAdditionalPowerBar
 local function CreateAdditionalPowerBar(self)

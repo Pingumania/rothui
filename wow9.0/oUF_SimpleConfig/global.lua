@@ -71,3 +71,8 @@ L.C.colors.healthbar = {
 L.C.colors.power = {
   mana = {0.1, 0.2, 1}
 }
+--threat
+L.C.colors.threat = {}
+for i = 0, 3 do
+	L.C.colors.threat[i] = {GetThreatStatusColor(i)}
+end
