@@ -49,7 +49,9 @@ L.C.textures = {
 }
 
 --colors
-L.C.colors = {}
+L.C.colors = {
+  default = {r=0,g=0,b=0}
+}
 --colors bgMultiplier
 L.C.colors.bgMultiplier = 0.3
 --colors castbar
@@ -71,7 +73,8 @@ L.C.colors.healthbar = {
 }
 --fix way to dark mana color
 L.C.colors.power = {
-  mana = {0.1, 0.2, 1}
+  mana = {0.1, 0.2, 1},
+  kyrian = {0, 0.75, 1}
 }
 --threat
 L.C.colors.threat = {}

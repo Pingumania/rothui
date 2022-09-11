@@ -96,6 +96,52 @@ local function ColorHealthbarOnThreat(self,unit)
   end
 end
 
+local function SetClassPowerPosition(self, max)
+  local parentWidth = floor(self.__owner:GetWidth()+0.5)
+  local width = floor((self.__owner.cfg.size[1]/max)-0.5)
+  local yOffset = 1
+  local maxWidth = (width*max)+(max-1)*yOffset
+  local diff = parentWidth-maxWidth
+
+  for i=10,1,-1 do
+    if (i > max) then
+      self[i].bg:Hide()
+    else
+      self[i]:ClearAllPoints()
+      self[i]:SetPoint("BOTTOMRIGHT", self.__owner, "TOPRIGHT", -((max-i)*(width+yOffset)), self.__owner.cfg.classbar.point[4])
+      self[i]:SetWidth(width)
+      self[i].bg:Show()
+    end
+  end
+
+  if diff ~= 0 and (diff < max-1 or diff > -max+1) then
+    local newWidth = parentWidth-diff
+    local childWidth = (newWidth/2)-2
+    self.__owner:SetWidth(newWidth)
+    if self.__owner.cfg.size[1] == self.__owner.cfg.powerbar.size[1] then
+      self.__owner.Power:SetWidth(newWidth)
+    end
+    if oUF_SimpleTarget then
+      oUF_SimpleTarget:SetWidth(newWidth)
+      oUF_SimpleTarget.Power:SetWidth(newWidth)
+    end
+    if oUF_SimpleTargetTarget then
+      oUF_SimpleTargetTarget:SetWidth(childWidth)
+    end
+    if oUF_SimpleFocus then
+      oUF_SimpleFocus:SetWidth(childWidth)
+    end
+    if oUF_SimplePet then
+      oUF_SimplePet:SetWidth(childWidth)
+    end
+  end
+
+  self.bd:ClearAllPoints()
+  self.bd:SetPoint("BOTTOMLEFT", self.__owner, "TOPLEFT", -L.C.backdrop.inset, -self.__owner.cfg.classbar.point[4])
+  self.bd:SetPoint("BOTTOMRIGHT", self.__owner, "TOPRIGHT", L.C.backdrop.inset, -self.__owner.cfg.classbar.point[4])
+  self.bd:Show()
+end
+
 --PostUpdateHealth
 local function PostUpdateHealth(self, unit, min, max)
   ColorHealthbarOnThreat(self, unit)
@@ -109,6 +155,27 @@ local function PostUpdatePower(self, unit)
     self:Show()
   end
 end
+
+--PostUpdateClassPower
+local function PostUpdateClassPower(self, cur, max, hasMaxChanged, powerType, chargedPoint)
+  if not max then
+    return
+  end
+  local color = self.__owner.colors.power[powerType]
+  for i=1,10 do
+    if (i <= max) then
+      local r, g, b = color[1], color[2], color[3]
+      local mu = self[i].bg.multiplier or 1
+      if i == chargedPoint then
+        r, g, b = unpack(L.C.colors.power.kyrian)
+      end
+      self[i]:SetStatusBarColor(r, g, b)
+      self[i].bg:SetVertexColor(r*mu, g*mu, b*mu)
+    end
+  end
+  if hasMaxChanged then
+    SetClassPowerPosition(self, max)
+  end
 end
 
 local function UpdateThreat(self)
@@ -173,6 +240,11 @@ local function AltPowerBarOverride(self, event, unit, powerType)
       el.bg:SetVertexColor(1*mu, 0*mu, 1*mu)
     end
   end
+  if self:GetName() == "oUF_SimplePlayer" and self.ClassPower.__isEnabled then
+    SetPoint(el,self,{"BOTTOMLEFT","oUF_SimplePlayer","TOPLEFT",0,10})
+  else
+    SetPoint(el,self,self.cfg.altpowerbar.point)
+  end
 end
 
 --CreateAltPowerBar
@@ -233,6 +305,36 @@ local function CreateClassBar(self)
   return s
 end
 L.F.CreateClassBar = CreateClassBar
+
+--CreateClassPower
+local function CreateClassPower(self)
+  if not self.cfg.classbar or not self.cfg.classbar.enabled then return end
+  local ClassPower = {}
+  --statusbar
+  for i=10,1,-1 do
+    local s = CreateFrame("StatusBar", nil, self)
+    s:SetStatusBarTexture(L.C.textures.statusbar)
+    s:SetSize(unpack(self.cfg.classbar.size))
+    --bg
+    local bg = s:CreateTexture(nil, "BACKGROUND")
+    bg:SetTexture(L.C.textures.statusbar)
+    bg:SetAllPoints(s)
+    bg:SetParent(self)
+    bg.multiplier = L.C.colors.bgMultiplier
+    s.bg = bg
+
+    ClassPower[i] = s
+  end
+  -- backdrop
+  local bd = CreateBackdrop(self)
+  bd:SetHeight(self.cfg.classbar.size[2]+2*L.C.backdrop.inset)
+  bd:SetFrameLevel(0)
+  bd:Hide()
+  ClassPower.bd = bd
+  ClassPower.PostUpdate = PostUpdateClassPower
+  return ClassPower
+end
+L.F.CreateClassPower = CreateClassPower
 
 --CreateHealthBar
 local function CreateHealthBar(self)
