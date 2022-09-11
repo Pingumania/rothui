@@ -95,7 +95,7 @@ end
 --spawn party
 if L.F.CreatePartyStyle then
   oUF:SetActiveStyle(A.."Party")
-  oUF:SpawnHeader(
+  local party = oUF:SpawnHeader(
     A.."PartyHeader",
     L.C.party.setup.template,
     L.C.party.setup.visibility,
@@ -109,9 +109,11 @@ if L.F.CreatePartyStyle then
     "oUF-initialConfigFunction", ([[
       self:SetWidth(%d)
       self:SetHeight(%d)
-      self:GetParent():SetScale(%f)
-    ]]):format(L.C.party.size[1], L.C.party.size[2], L.C.party.scale)
-  ):SetPoint(unpack(L.C.party.point))
+    ]]):format(L.C.party.size[1], L.C.party.size[2])
+  )
+  party:SetIgnoreParentScale(true)
+  party:SetScale(L.C.globalscale)
+  party:SetPoint(unpack(L.C.party.point))
 end
 
 --spawn boss frames
