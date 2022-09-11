@@ -382,17 +382,20 @@ L.F.CreateHealthBar = CreateHealthBar
 --CreateHealthPrediction
 local function CreateHealthPrediction(self)
   if not self.cfg.absorbbar or not self.cfg.absorbbar.enabled then return end
-  -- Position and size
-  -- local myBar = CreateFrame("StatusBar", nil, self.Health)
-  -- myBar:SetPoint("TOP")
-  -- myBar:SetPoint("BOTTOM")
-  -- myBar:SetPoint("LEFT", self.Health:GetStatusBarTexture(), "RIGHT")
-  -- myBar:SetWidth(200)
-  -- local otherBar = CreateFrame("StatusBar", nil, self.Health)
-  -- otherBar:SetPoint("TOP")
-  -- otherBar:SetPoint("BOTTOM")
-  -- otherBar:SetPoint("LEFT", self.Health:GetStatusBarTexture(), "RIGHT")
-  -- otherBar:SetWidth(200)
+  local myBar = CreateFrame("StatusBar", nil, self.Health)
+  myBar:SetPoint("TOP")
+  myBar:SetPoint("BOTTOM")
+  myBar:SetPoint("LEFT", self.Health:GetStatusBarTexture(), "RIGHT")
+  myBar:SetWidth(200)
+  myBar:SetStatusBarTexture(L.C.textures.statusbar)
+  myBar:SetStatusBarColor(unpack(L.C.colors.healthbar.own))
+  local otherBar = CreateFrame("StatusBar", nil, self.Health)
+  otherBar:SetPoint("TOP")
+  otherBar:SetPoint("BOTTOM")
+  otherBar:SetPoint("LEFT", self.Health:GetStatusBarTexture(), "RIGHT")
+  otherBar:SetWidth(200)
+  otherBar:SetStatusBarTexture(L.C.textures.statusbar)
+  otherBar:SetStatusBarColor(unpack(L.C.colors.healthbar.other))
   local absorbBar = CreateFrame("StatusBar", nil, self.Health)
   absorbBar:SetPoint("TOP")
   absorbBar:SetPoint("BOTTOM")
@@ -419,8 +422,8 @@ local function CreateHealthPrediction(self)
   overHealAbsorb:SetWidth(10)
   -- Register with oUF
   return {
-      -- myBar = myBar,
-      -- otherBar = otherBar,
+      myBar = myBar,
+      otherBar = otherBar,
       absorbBar = absorbBar,
       healAbsorbBar = healAbsorbBar,
       overAbsorb = overAbsorb,
