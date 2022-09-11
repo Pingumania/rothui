@@ -15,7 +15,7 @@ local A, L = ...
 L.C.player = {
   enabled = true,
   size = {265,26},
-  point = {"RIGHT",UIParent,"CENTER",-130,-100},
+  point = {"RIGHT",UIParent,"CENTER",-213,-273},
   scale = 1*L.C.globalscale,
   -- frameVisibility = "[combat][mod:shift][@target,exists][@vehicle,exists][overridebar][shapeshift][vehicleui][possessbar] show; hide",
   --fader via OnShow
@@ -53,7 +53,7 @@ L.C.player = {
       size = 15,
       tag = "[oUF_Simple:health]",
     },
-    debuffHighlight = true,
+    debuffHighlight = false,
   },
   --powerbar
   powerbar = {
@@ -68,6 +68,12 @@ L.C.player = {
       tag = "[perpp]",
     },
   },
+  --leader
+  leader = {
+    enabled = true,
+    size = {18,18},
+    point = {"BOTTOMLEFT","TOPLEFT",0,-6},
+  },
   --raidmark
   raidmark = {
     enabled = true,
@@ -77,8 +83,8 @@ L.C.player = {
   --castbar
   castbar = {
     enabled = true,
-    size = {265,26},
-    point = {"BOTTOM","TOP",0,14},
+    size = {267,28},
+    point = {"CENTER",UIParent,"BOTTOM",16,190},
     --orientation = "VERTICAL",
     name = {
       enabled = true,

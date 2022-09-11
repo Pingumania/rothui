@@ -14,8 +14,8 @@ local A, L = ...
 
 L.C.target = {
   enabled = true,
-  size = {265,26},
-  point = {"LEFT",UIParent,"CENTER",130,-100},
+  size = {272,26},
+  point = {"LEFT",UIParent,"CENTER",213,-273},
   scale = 1*L.C.globalscale,
   --fader via OnShow
   fader = {
@@ -53,14 +53,20 @@ L.C.target = {
       size = 15,
       tag = "[oUF_Simple:health]",
     },
-    debuffHighlight = true,
+    debuffHighlight = false,
   },
   --powerbar
   powerbar = {
     enabled = true,
-    size = {265,5},
+    size = {272,5},
     point = {"TOP","BOTTOM",0,-4}, --if no relativeTo is given the frame base will be the relativeTo reference
     colorPower = true,
+  },
+  --leader
+  leader = {
+    enabled = true,
+    size = {18,18},
+    point = {"BOTTOMRIGHT","TOPRIGHT",0,-6},
   },
   --raidmark
   raidmark = {
@@ -71,8 +77,8 @@ L.C.target = {
   --castbar
   castbar = {
     enabled = true,
-    size = {265,26},
-    point = {"BOTTOM","TOP",0,14},
+    size = {267,28},
+    point = {"CENTER",UIParent,"BOTTOM",-16,225},
     name = {
       enabled = true,
       points = {
@@ -88,31 +94,32 @@ L.C.target = {
     icon = {
       enabled = true,
       size = {26,26},
-      point = {"RIGHT","LEFT",-6,0},
+      point = {"LEFT","RIGHT",6,0},
     },
   },
   buffs = {
     enabled = true,
-    point = {"BOTTOMLEFT","RIGHT",5,5},
+    point = {"BOTTOMRIGHT","TOPRIGHT",0,15},
     num = 32,
-    cols = 8,
-    size = 22,
-    spacing = 5,
-    initialAnchor = "BOTTOMLEFT",
-    growthX = "RIGHT",
+    cols = 4,
+    size = 30,
+    spacing = 4,
+    initialAnchor = "BOTTOMRIGHT",
+    growthX = "LEFT",
     growthY = "UP",
     disableCooldown = false,
   },
   debuffs = {
     enabled = true,
-    point = {"TOPLEFT","RIGHT",5,-5},
+    point = {"BOTTOMLEFT","TOPLEFT",0,15},
     num = 40,
-    cols = 8,
-    size = 22,
-    spacing = 5,
-    initialAnchor = "TOPLEFT",
+    cols = 4,
+    size = 30,
+    spacing = 8,
+    initialAnchor = "BOTTOMLEFT",
     growthX = "RIGHT",
-    growthY = "DOWN",
+    growthY = "UP",
     disableCooldown = false,
+    filter = "PLAYER",
   },
 }

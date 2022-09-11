@@ -35,7 +35,7 @@ L.C.targettarget = {
       align = "CENTER",
       tag = "[name]",
     },
-    debuffHighlight = true,
+    debuffHighlight = false,
   },
   --raidmark
   raidmark = {
@@ -45,7 +45,7 @@ L.C.targettarget = {
   },
   --debuffs
   debuffs = {
-    enabled = true,
+    enabled = false,
     point = {"TOPLEFT","BOTTOMLEFT",0,-5},
     num = 5,
     cols = 5,

@@ -13,10 +13,10 @@ local A, L = ...
 -----------------------------
 
 L.C.raid = {
-  enabled = true,
+  enabled = false,
   size = {110,26},
   points = { --list of 8 points, one for each raid group
-    {"TOPLEFT",20,-20},
+    {"TOPLEFT",20,-200},
     {"TOP", "oUF_SimpleRaidHeader1", "BOTTOM", 0, -10},
     {"TOP", "oUF_SimpleRaidHeader2", "BOTTOM", 0, -10},
     {"TOP", "oUF_SimpleRaidHeader3", "BOTTOM", 0, -10},

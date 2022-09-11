@@ -36,7 +36,7 @@ L.C.focus = {
       align = "CENTER",
       tag = "[name]",
     },
-    debuffHighlight = true,
+    debuffHighlight = false,
   },
   --raidmark
   raidmark = {
@@ -46,7 +46,7 @@ L.C.focus = {
   },
   --castbar
   castbar = {
-    enabled = true,
+    enabled = false,
     size = {130,26},
     point = {"TOP","BOTTOM",0,-5},
     name = {
@@ -65,7 +65,7 @@ L.C.focus = {
   },
   --buffs
   buffs = {
-    enabled = true,
+    enabled = false,
     point = {"LEFT","RIGHT",5,0},
     num = 2,
     cols = 2,
@@ -78,7 +78,7 @@ L.C.focus = {
   },
   --debuffs
   debuffs = {
-    enabled = true,
+    enabled = false,
     point = {"TOPLEFT","BOTTOMLEFT",0,-5},
     num = 5,
     cols = 5,

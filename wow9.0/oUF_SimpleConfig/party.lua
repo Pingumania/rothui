@@ -15,7 +15,7 @@ local character = UnitName("player")
 -----------------------------
 
 L.C.party = {
-  enabled = true,
+  enabled = false,
   size = {180,26},
   point = { "TOPLEFT", "oUF_SimplePlayer", "BOTTOMLEFT", 0, -92 }, --{"TOPLEFT",20,-20},
   scale = 1*L.C.globalscale,
