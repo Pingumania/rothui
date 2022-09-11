@@ -1,4 +1,4 @@
-## Interface: 90105
+## Interface: 90205
 ## Author: zork
 ## Title: oUF_SimpleConfig
 ## Notes: oUF_Simple config
