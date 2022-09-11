@@ -48,7 +48,7 @@ local bagbar = {
   buttonMargin    = 2,
   numCols         = 6, --number of buttons per column
   startPoint      = "BOTTOMRIGHT", --start postion of first button: BOTTOMLEFT, TOPLEFT, TOPRIGHT, BOTTOMRIGHT
-  fader           = fader,
+  fader           = faderOnShow,
   frameVisibility = "[combat] hide; show"
 }
 --create
@@ -78,7 +78,7 @@ rActionBar:CreateMicroMenuBar(A, micromenubar)
 -----------------------------
 
 local bar1 = {
-  framePoint      = { "BOTTOM", UIParent, "BOTTOM", 0, 265 },
+  framePoint      = { "BOTTOM", UIParent, "BOTTOM", 0, 4*38 },
   frameScale      = 0.9,
   framePadding    = 5,
   buttonWidth     = 32,
@@ -98,7 +98,7 @@ rActionBar:CreateActionBar1(A, bar1)
 -----------------------------
 
 local bar2 = {
-  framePoint      = { "TOP", A.."Bar1", "BOTTOM", 0, 0 },
+  framePoint      = { "BOTTOM", UIParent, "BOTTOM", 0, 3*38 },
   frameScale      = 0.9,
   framePadding    = 5,
   buttonWidth     = 32,
@@ -118,7 +118,7 @@ rActionBar:CreateActionBar2(A, bar2)
 -----------------------------
 
 local bar3 = {
-  framePoint      = { "TOP", A.."Bar2", "BOTTOM", 0, 0 },
+  framePoint      = { "BOTTOM", UIParent, "BOTTOM", 0, 2*38 },
   frameScale      = 0.9,
   framePadding    = 5,
   buttonWidth     = 32,
@@ -138,7 +138,7 @@ rActionBar:CreateActionBar3(A, bar3)
 -----------------------------
 
 local bar4 = {
-  framePoint      = { "TOP", A.."Bar3", "BOTTOM", 0, 0 },
+  framePoint      = { "BOTTOM", UIParent, "BOTTOM", 0, 38 },
   frameScale      = 0.9,
   framePadding    = 5,
   buttonWidth     = 32,
@@ -157,7 +157,7 @@ rActionBar:CreateActionBar4(A, bar4)
 -----------------------------
 
 local bar5 = {
-  framePoint      = { "TOP", A.."Bar4", "BOTTOM", 0, 0 },
+  framePoint      = { "BOTTOM", UIParent, "BOTTOM", 0, 0 },
   frameScale      = 0.9,
   framePadding    = 5,
   buttonWidth     = 32,
