@@ -142,6 +142,6 @@ L.C.target = {
     growthY = "UP",
     disableCooldown = false,
     buffFilter = "HELPFUL",
-    debuffFilter = "PLAYER",
+    debuffFilter = "PLAYER|HARMFUL",
   },
 }

@@ -19,28 +19,30 @@ local SPELL_POWER_CHI = Enum.PowerType.Chi or 12
 local SPELL_POWER_ARCANE_CHARGES = Enum.PowerType.ArcaneCharges or 16
 
 do
-  if(PlayerClass == 'MONK') then
-    ClassPowerID = SPELL_POWER_CHI
-    ClassPowerType = 'CHI'
-    RequireSpec = SPEC_MONK_WINDWALKER
-  elseif(PlayerClass == 'PALADIN') then
-    ClassPowerID = SPELL_POWER_HOLY_POWER
-    ClassPowerType = 'HOLY_POWER'
-    RequireSpec = SPEC_PALADIN_RETRIBUTION
-  elseif(PlayerClass == 'WARLOCK') then
-    ClassPowerID = SPELL_POWER_SOUL_SHARDS
-    ClassPowerType = 'SOUL_SHARDS'
-  elseif(PlayerClass == 'ROGUE' or PlayerClass == 'DRUID') then
-    ClassPowerID = SPELL_POWER_COMBO_POINTS
-    ClassPowerType = 'COMBO_POINTS'
-    if(PlayerClass == 'DRUID') then
-      RequirePower = SPELL_POWER_ENERGY
-      RequireSpell = 5221 -- Shred
+  if rLib.Retail then
+    if(PlayerClass == 'MONK') then
+      ClassPowerID = SPELL_POWER_CHI
+      ClassPowerType = 'CHI'
+      RequireSpec = SPEC_MONK_WINDWALKER
+    elseif(PlayerClass == 'PALADIN') then
+      ClassPowerID = SPELL_POWER_HOLY_POWER
+      ClassPowerType = 'HOLY_POWER'
+      RequireSpec = SPEC_PALADIN_RETRIBUTION
+    elseif(PlayerClass == 'WARLOCK') then
+      ClassPowerID = SPELL_POWER_SOUL_SHARDS
+      ClassPowerType = 'SOUL_SHARDS'
+    elseif(PlayerClass == 'ROGUE' or PlayerClass == 'DRUID') then
+      ClassPowerID = SPELL_POWER_COMBO_POINTS
+      ClassPowerType = 'COMBO_POINTS'
+      if(PlayerClass == 'DRUID') then
+        RequirePower = SPELL_POWER_ENERGY
+        RequireSpell = 5221 -- Shred
+      end
+    elseif(PlayerClass == 'MAGE') then
+      ClassPowerID = SPELL_POWER_ARCANE_CHARGES
+      ClassPowerType = 'ARCANE_CHARGES'
+      RequireSpec = SPEC_MAGE_ARCANE
     end
-  elseif(PlayerClass == 'MAGE') then
-    ClassPowerID = SPELL_POWER_ARCANE_CHARGES
-    ClassPowerType = 'ARCANE_CHARGES'
-    RequireSpec = SPEC_MAGE_ARCANE
   end
 end
 
