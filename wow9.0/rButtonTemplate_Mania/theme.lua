@@ -125,12 +125,13 @@ actionButtonConfig.name = {
     {"BOTTOMLEFT", 0, 0 },
     {"BOTTOMRIGHT", 0, 0 },
   },
+  halign = "LEFT",
   alpha = 1,
 }
 
 --hotkey
 actionButtonConfig.hotkey = {
-  font = { STANDARD_TEXT_FONT, 11, "OUTLINE"},
+  font = { STANDARD_TEXT_FONT, 13, "OUTLINE"},
   points = {
     {"TOPRIGHT", 0, 0 },
     {"TOPLEFT", 0, 0 },
@@ -140,7 +141,7 @@ actionButtonConfig.hotkey = {
 
 --count
 actionButtonConfig.count = {
-  font = { STANDARD_TEXT_FONT, 11, "OUTLINE"},
+  font = { STANDARD_TEXT_FONT, 13, "OUTLINE"},
   points = {
     {"BOTTOMRIGHT", 0, 0 },
   },

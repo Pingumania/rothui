@@ -40,7 +40,7 @@ local faderOnShow = {
 -----------------------------
 
 local bagbar = {
-  framePoint      = { "BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -50, 0 },
+  framePoint      = { "BOTTOMRIGHT", "UIParent", "BOTTOMRIGHT", 0, 0 },
   frameScale      = 1,
   framePadding    = 5,
   buttonWidth     = 32,
@@ -49,7 +49,7 @@ local bagbar = {
   numCols         = 6, --number of buttons per column
   startPoint      = "BOTTOMRIGHT", --start postion of first button: BOTTOMLEFT, TOPLEFT, TOPRIGHT, BOTTOMRIGHT
   fader           = faderOnShow,
-  frameVisibility = "[combat] hide; show"
+  -- frameVisibility = "[combat] hide; show"
 }
 --create
 rActionBar:CreateBagBar(A, bagbar)
@@ -59,9 +59,9 @@ rActionBar:CreateBagBar(A, bagbar)
 -----------------------------
 
 local micromenubar = {
-  framePoint      = { "TOP", UIParent, "TOP", 0, 5 },
+  framePoint      = { "TOP", "UIParent", "TOP", 0, 5 },
   frameScale      = 0.8,
-  framePadding    = 5,
+  framePadding    = 1,
   buttonWidth     = 28,
   buttonHeight    = 38,
   buttonMargin    = 0,
@@ -78,15 +78,15 @@ rActionBar:CreateMicroMenuBar(A, micromenubar)
 -----------------------------
 
 local bar1 = {
-  framePoint      = { "BOTTOM", UIParent, "BOTTOM", 0, 4*38 },
-  frameScale      = 0.9,
+  framePoint      = { "BOTTOM", "UIParent", "BOTTOM", -93, 0 },
+  frameScale      = 1,
   framePadding    = 5,
   buttonWidth     = 32,
   buttonHeight    = 32,
   buttonMargin    = 5,
   numCols         = 12,
   startPoint      = "BOTTOMLEFT",
-  fader           = faderOnShow,
+  -- fader           = faderOnShow,
   -- frameVisibility = "[petbattle] hide; [combat][mod:shift][@target,exists,nodead][@vehicle,exists][overridebar][shapeshift][vehicleui][possessbar] show; hide"
   frameVisibility = "[petbattle] hide; show"
 }
@@ -98,15 +98,15 @@ rActionBar:CreateActionBar1(A, bar1)
 -----------------------------
 
 local bar2 = {
-  framePoint      = { "BOTTOM", UIParent, "BOTTOM", 0, 3*38 },
-  frameScale      = 0.9,
+  framePoint      = { "BOTTOM", A.."Bar1", "TOP", 0, -5 },
+  frameScale      = 1,
   framePadding    = 5,
   buttonWidth     = 32,
   buttonHeight    = 32,
   buttonMargin    = 5,
   numCols         = 12,
   startPoint      = "BOTTOMLEFT",
-  fader           = faderOnShow,
+  -- fader           = faderOnShow,
   -- frameVisibility = "[petbattle][overridebar][vehicleui][possessbar][shapeshift] hide; [combat][mod:shift][@target,exists,nodead] show; hide"
   frameVisibility = "[petbattle][overridebar][vehicleui][possessbar][shapeshift] hide; show"
 }
@@ -118,15 +118,15 @@ rActionBar:CreateActionBar2(A, bar2)
 -----------------------------
 
 local bar3 = {
-  framePoint      = { "BOTTOM", UIParent, "BOTTOM", 0, 2*38 },
-  frameScale      = 0.9,
+  framePoint      = { "BOTTOMLEFT", A.."Bar1", "BOTTOMRIGHT", -5, 0 },
+  frameScale      = 1,
   framePadding    = 5,
   buttonWidth     = 32,
   buttonHeight    = 32,
   buttonMargin    = 5,
-  numCols         = 12,
+  numCols         = 6,
   startPoint      = "BOTTOMLEFT",
-  fader           = faderOnShow,
+  -- fader           = faderOnShow,
   -- frameVisibility = "[petbattle] hide; [combat][mod][@target,exists,nodead][@vehicle,exists][overridebar][shapeshift][vehicleui][possessbar] show; hide"
   frameVisibility = "[petbattle][overridebar][vehicleui][possessbar][shapeshift] hide; show"
 }
@@ -138,15 +138,15 @@ rActionBar:CreateActionBar3(A, bar3)
 -----------------------------
 
 local bar4 = {
-  framePoint      = { "BOTTOM", UIParent, "BOTTOM", 0, 38 },
-  frameScale      = 0.9,
+  framePoint      = { "RIGHT", "UIParent", "RIGHT", 0, 0 },
+  frameScale      = 1,
   framePadding    = 5,
   buttonWidth     = 32,
   buttonHeight    = 32,
   buttonMargin    = 5,
-  numCols         = 12,
-  startPoint      = "BOTTOMLEFT",
-  fader           = faderOnShow,
+  numCols         = 1,
+  startPoint      = "TOPRIGHT",
+  -- fader           = faderOnShow,
   frameVisibility = "[petbattle][overridebar][vehicleui][possessbar][shapeshift] hide; show"
 }
 --create
@@ -157,15 +157,15 @@ rActionBar:CreateActionBar4(A, bar4)
 -----------------------------
 
 local bar5 = {
-  framePoint      = { "BOTTOM", UIParent, "BOTTOM", 0, 0 },
-  frameScale      = 0.9,
+  framePoint      = { "RIGHT", A.."Bar4", "LEFT", 5, 0 },
+  frameScale      = 1,
   framePadding    = 5,
   buttonWidth     = 32,
   buttonHeight    = 32,
   buttonMargin    = 5,
-  numCols         = 12,
-  startPoint      = "BOTTOMLEFT",
-  fader           = faderOnShow,
+  numCols         = 1,
+  startPoint      = "TOPRIGHT",
+  -- fader           = faderOnShow,
   frameVisibility = "[petbattle][overridebar][vehicleui][possessbar][shapeshift] hide; show"
 }
 --create
@@ -196,15 +196,15 @@ rActionBar:CreateStanceBar(A, stancebar)
 
 --petbar
 local petbar = {
-  framePoint      = { "BOTTOM", A.."Bar3", "TOP", 0, 0 },
-  frameScale      = 0.8,
+  framePoint      = { "BOTTOM", A.."Bar2", "TOP", 0, -5 },
+  frameScale      = 0.9,
   framePadding    = 5,
   buttonWidth     = 32,
   buttonHeight    = 32,
   buttonMargin    = 5,
   numCols         = 12,
   startPoint      = "BOTTOMLEFT",
-  fader           = fader,
+  fader           = nil,
   --frameVisibility = "[petbattle][overridebar][vehicleui][possessbar][shapeshift] hide; [pet,mod] show; hide"
 }
 --create
@@ -233,7 +233,7 @@ rActionBar:CreateExtraBar(A, extrabar)
 -----------------------------
 
 local vehicleexitbar = {
-  framePoint      = { "BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", 0, 0 },
+  framePoint      = { "BOTTOMRIGHT", "UIParent", "BOTTOMRIGHT", 0, 0 },
   frameScale      = 0.95,
   framePadding    = 5,
   buttonWidth     = 36,
