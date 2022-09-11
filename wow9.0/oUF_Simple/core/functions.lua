@@ -115,7 +115,7 @@ local function UpdateThreat(self)
   local status
 	-- BUG: Non-existent '*target' or '*pet' units cause UnitThreatSituation() errors
 	if (UnitExists(self.unit)) then
-		status = UnitThreatSituation(self.unit )
+		status = UnitThreatSituation(self.unit)
 	end
 
   local t = self.ThreatIndicator
@@ -282,9 +282,11 @@ local function CreateThreatIndicator(self)
   if self.unit ~= "player" then return end
   local s = CreateFrame("StatusBar", nil, self)
   SetPoints(s,self.Health,{{"TOPLEFT","TOPLEFT",-4,4},{"BOTTOMRIGHT","BOTTOMRIGHT",4,-4}})
-  s.bd = CreateBackdrop(s)
-  s.bd:SetPoint("TOPLEFT", s, "TOPLEFT", -3, 3)
-  s.bd:SetPoint("BOTTOMRIGHT", s, "BOTTOMRIGHT", 3, -3)
+  local bd = CreateBackdrop(s)
+  bd:SetFrameStrata("BACKGROUND")
+  bd:SetPoint("TOPLEFT", s, "TOPLEFT", -3, 3)
+  bd:SetPoint("BOTTOMRIGHT", s, "BOTTOMRIGHT", 3, -3)
+  s.bd = bd
   s.Override = L.F.UpdateThreat
   return s
 end
