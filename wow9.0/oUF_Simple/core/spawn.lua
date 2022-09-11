@@ -8,6 +8,7 @@
 
 local A, L = ...
 local oUF = L.oUF or oUF
+local MAX_BOSS_FRAMES = 8
 
 -----------------------------
 -- Register Style
