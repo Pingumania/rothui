@@ -17,9 +17,9 @@ local floor = floor
 --tag method: oUF_SimpleConfig:status
 L.C.tagMethods["oUF_SimpleConfig:status"] = function(unit,...)
   if UnitAffectingCombat(unit) then
-    return "|TInterface\\CharacterFrame\\UI-StateIcon:20:20:0:0:64:64:33:64:0:31|t"
+    return "|TInterface\\CharacterFrame\\UI-StateIcon:25:25:0:0:64:64:33:64:0:31|t"
   elseif unit == "player" and IsResting() then
-    return "|TInterface\\CharacterFrame\\UI-StateIcon:20:20:0:0:64:64:0:31:0:31|t"
+    return "|TInterface\\CharacterFrame\\UI-StateIcon:25:25:0:0:64:64:0:31:0:31|t"
   end
 end
 
