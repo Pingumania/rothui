@@ -1,6 +1,0 @@
-## Interface: 50400
-## Author: zork
-## Title: ColorSmudge
-## Notes: Color destruction derby
-
-core.lua

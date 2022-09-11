@@ -1,7 +1,0 @@
-## Interface: 50200
-## Author: zork
-## Title: rRoundActionButton
-## Notes: Making your buttons go round!
-## OptionalDeps: rActionBarStyler
-
-core.lua

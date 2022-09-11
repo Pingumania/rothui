@@ -1,0 +1,6 @@
+## Interface: 90105
+## Author: zork
+## Title: rVignette
+## Notes: Simple Vignette alert
+
+rVignette.lua

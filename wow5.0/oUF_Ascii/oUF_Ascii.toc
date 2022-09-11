@@ -1,7 +1,0 @@
-## Interface: 50400
-## Title: oUF_Ascii
-## Author: zork
-## Notes: Text only oUF layout
-## Dependencies: oUF
-
-core.lua

@@ -1,6 +1,0 @@
-## Interface: 60200
-## Author: zork
-## Title: rAfkCamera
-## Notes: AFK camera
-
-rAfkCamera.lua

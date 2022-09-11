@@ -1,7 +1,0 @@
-## Interface: 60200
-## Author: zork
-## Title: oUF_Doom
-## Notes: You are doomed!
-## RequiredDeps: oUF
-
-oUF_Doom.lua

@@ -1,7 +1,0 @@
-## Interface: 70300
-## Title: oUF_Boiler
-## Author: zork
-## Notes: oUF layout
-## Dependencies: oUF
-
-spawn.lua

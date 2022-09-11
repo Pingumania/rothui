@@ -1,0 +1,7 @@
+## Interface: 90105
+## Title: rButtonAura_Mania
+## Author: Mania
+## Notes: Mania's config for rButtonAura
+## RequiredDeps: rButtonAura
+
+config.lua

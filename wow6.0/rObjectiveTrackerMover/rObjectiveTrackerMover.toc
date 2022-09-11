@@ -1,8 +1,0 @@
-## Interface: 60000
-## Author: zork
-## Title: rObjectiveTrackerMover
-## Notes: Makes the objective tracker movable.
-## RequiredDeps: Blizzard_ObjectiveTracker
-## LoadWith: Blizzard_ObjectiveTracker
-
-core.lua

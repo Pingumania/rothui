@@ -1,7 +1,0 @@
-## Interface: 80000
-## Author: zork
-## Title: rBuffFrame_Zork
-## Notes: Zork's buff frame layout for rBuffFrame
-## RequiredDeps: rLib, rBuffFrame
-
-layout.lua

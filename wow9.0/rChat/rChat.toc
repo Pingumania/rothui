@@ -1,0 +1,6 @@
+## Interface: 90105
+## Author: zork
+## Title: rChat
+## Notes: Chat enhancements
+
+core.lua

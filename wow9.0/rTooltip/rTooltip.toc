@@ -1,0 +1,6 @@
+## Interface: 90105
+## Author: zork
+## Title: rTooltip
+## Notes: Tooltip enhancements
+
+core.lua

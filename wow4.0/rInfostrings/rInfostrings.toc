@@ -1,7 +1,0 @@
-## Interface: 40300
-## Author: zork
-## Version: 1.0
-## Title: rInfostrings
-## Notes: Some strings with info
-
-rInfostrings.lua

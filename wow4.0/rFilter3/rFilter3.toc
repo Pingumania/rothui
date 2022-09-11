@@ -1,8 +1,0 @@
-## Interface: 40300
-## Author: zork
-## Version: 0.3
-## Title: rFilter3
-## Notes: Simple buff, debuff and cooldown tracking for units and spells
-
-config.lua
-core.lua

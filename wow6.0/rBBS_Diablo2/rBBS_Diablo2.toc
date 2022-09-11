@@ -1,8 +1,0 @@
-## Interface: 60000
-## Author: zork
-## Title: rBBS_Diablo2
-## Notes: Diablo2 flavoured layout for rBBS
-## RequiredDeps: rBBS
-
-config.lua
-style.lua
