@@ -24,7 +24,7 @@ if L.F.CreatePartyStyle then oUF:RegisterStyle(A.."Party", L.F.CreatePartyStyle)
 if L.F.CreateBossStyle then oUF:RegisterStyle(A.."Boss", L.F.CreateBossStyle) end
 if L.F.CreateNamePlateStyle then oUF:RegisterStyle(A.."Nameplate",L.F.CreateNamePlateStyle) end
 if L.F.CreateRaidStyle then oUF:RegisterStyle(A.."Raid", L.F.CreateRaidStyle) end
-if L.F.CreateArenaStyle then oUF:RegisterStyle(A.."Arena", L.F.CreateArenaStyle) end
+if rLib.Retail and L.F.CreateArenaStyle then oUF:RegisterStyle(A.."Arena", L.F.CreateArenaStyle) end
 
 -----------------------------
 -- Spawn Units
@@ -185,8 +185,8 @@ if L.F.CreateArenaStyle then
   --constant MAX_ARENA_ENEMIES is part of the blizzard arena ui addon which is not loaded on init
   for i = 1, 5 do
     arena[i] = oUF:Spawn("arena"..i, A.."Arena"..i)
-    arena[i].PostUpdate = PostUpdate
-    if arena[i].Power then
+    arena[i].PostUpdate = rLib.Retail and PostUpdate
+    if rLib.Retail and arena[i].Power then
       arena[i].Power.OverrideArenaPreparation = OverrideArenaPreparation
     end
     if (i == 1) then

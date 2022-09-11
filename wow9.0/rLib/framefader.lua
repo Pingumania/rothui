@@ -120,7 +120,9 @@ local function SpellFlyoutOnShow(self)
     end
   end
 end
-SpellFlyout:HookScript("OnShow", SpellFlyoutOnShow)
+if SpellFlyout then
+  SpellFlyout:HookScript("OnShow", SpellFlyoutOnShow)
+end
 
 function rLib:CreateFrameFader(frame, faderConfig)
   if frame.faderConfig then return end

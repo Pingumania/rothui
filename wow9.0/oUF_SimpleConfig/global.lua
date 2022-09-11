@@ -78,6 +78,15 @@ L.C.colors.power = {
 }
 --threat
 L.C.colors.threat = {}
-for i = 0, 3 do
-	L.C.colors.threat[i] = {GetThreatStatusColor(i)}
+if GetThreatStatusColor then
+  for i = 0, 3 do
+      L.C.colors.threat[i] = {GetThreatStatusColor(i)}
+  end
+else
+  L.C.colors.threat = {
+    [0] = {0.69, 0.69, 0.69},
+    [1] = {1, 1, 0.47},
+    [2] = {1, 0.6, 0},
+    [3] = {1, 0, 0}
+  }
 end
