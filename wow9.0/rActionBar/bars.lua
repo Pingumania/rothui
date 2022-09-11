@@ -44,6 +44,7 @@ function rActionBar:CreateMicroMenuBar(addonName,cfg)
   MainMenuBar:SetScript("OnShow", nil)
   MainMenuBar:SetMovable(true)
   MainMenuBar:SetUserPlaced(true)
+  MainMenuMicroButton:SetScript("OnEnter", MainMenuBarMicroButtonMixin.OnEnter)
 end
 
 --Bar1
